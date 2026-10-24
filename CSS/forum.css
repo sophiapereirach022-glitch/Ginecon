@@ -1,0 +1,233 @@
+/* ── BASE ── */
+body {
+    font-family: system-ui, sans-serif;
+    background: #f3f4f6;
+    color: #111827;
+    margin: 0;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    border: 0;
+    border-radius: 8px;
+    padding: .6rem 1.2rem;
+    background: #2563eb;
+    color: #fff;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+#BotaoUsuario {
+    background: #e5e7eb;
+    color: #111827;
+}
+
+#BotaoUsuario:hover {
+    background: #d1d5db;
+}
+
+/* ── CABEÇALHO ── */
+#cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-bottom: 2px solid #e5e7eb;
+    padding: 1rem 1.5rem;
+}
+
+#cabecalho h1 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+/* ── LAYOUT: feed + sidebar ── */
+#layout {
+    display: grid;
+    grid-template-columns: 1fr 240px;
+    min-height: calc(100vh - 70px);
+}
+
+#feed {
+    padding: 1.5rem;
+}
+
+#barra-feed {
+    max-width: 700px;
+    margin: 0 auto 1rem;
+}
+
+#sidebar {
+    background: #fff;
+    border-left: 2px solid #e5e7eb;
+    padding: 1rem;
+}
+
+#campo-pesquisa {
+    width: 100%;
+    box-sizing: border-box;
+    padding: .6rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font: inherit;
+    margin-bottom: 1rem;
+}
+
+#lista-topicos {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#lista-topicos li {
+    padding: .6rem .8rem;
+    border-bottom: 1px solid #e5e7eb;
+    cursor: pointer;
+}
+
+#lista-topicos li:hover {
+    background: #f3f4f6;
+}
+
+#lista-topicos li.ativo {
+    background: #e0e7ff;
+    color: #3730a3;
+    font-weight: 600;
+}
+
+/* celular: sidebar vai para baixo do feed */
+@media (max-width: 700px) {
+    #layout { grid-template-columns: 1fr; }
+    #sidebar { border-left: 0; border-top: 2px solid #e5e7eb; order: -1; }
+}
+
+/* ── MODAL (seu CSS atual) ── */
+#overlay-modal-postagem {
+    display: none;              /* fechado por padrão */
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .5);
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#overlay-modal-postagem.ativo {
+    display: flex;              /* aparece quando o JS adiciona a classe "ativo" */
+}
+
+#modal-postagem {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    width: min(500px, 92vw);
+    position: relative;
+}
+
+/* ── CAMPOS DO MODAL ── */
+#botao-fechar-modal-postagem {
+    position: absolute;
+    top: .6rem;
+    right: .6rem;
+    background: transparent;
+    color: #6b7280;
+    padding: .3rem .6rem;
+}
+
+#botao-fechar-modal-postagem:hover {
+    background: #f3f4f6;
+}
+
+.campo-modal {
+    margin-bottom: 1rem;
+}
+
+.campo-modal > label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: .4rem;
+}
+
+#pergunta,
+#especialidade-postagem {
+    width: 100%;
+    box-sizing: border-box;
+    padding: .5rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font: inherit;
+}
+
+#pergunta {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.radios label {
+    margin-right: 1.2rem;
+    cursor: pointer;
+}
+
+#botao-confirmar-postagem {
+    width: 100%;
+}
+
+/* ── LISTA DE PERGUNTAS ── */
+#lista-postagens {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.card-postagem {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.card-topo {
+    display: flex;
+    justify-content: space-between;
+    font-size: .85rem;
+    color: #6b7280;
+}
+
+.card-autor {
+    font-weight: 600;
+    color: #374151;
+}
+
+.card-pergunta {
+    font-size: 1.05rem;
+    margin: .8rem 0;
+    white-space: pre-wrap;      /* mantém as quebras de linha digitadas */
+}
+
+.card-especialidade {
+    display: inline-block;
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: .2rem .6rem;
+    border-radius: 999px;
+    font-size: .8rem;
+}
+
+/* barra "Respostas" embaixo de cada card, como no desenho */
+.card-respostas {
+    display: block;
+    width: 100%;
+    margin-top: .8rem;
+    background: #f3f4f6;
+    color: #111827;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    text-align: left;
+}
+
+.card-respostas:hover {
+    background: #e5e7eb;
+}
