@@ -1,0 +1,320 @@
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f5f3ff;
+      color: #252744;
+      min-height: 100vh;
+      display: grid;
+      box-sizing: border-box;
+      grid-template-columns: minmax(0, 1fr);
+      grid-template-rows: auto auto auto auto 1fr ;
+      grid-template-areas:
+           "header"
+           "banner"
+           "destaqueForum"
+           "faq"
+           "footer";
+}
+
+    .header{
+        padding-top: 0;
+        min-height: 70px;
+        display: grid;
+        grid-area: header;
+        background-color: #252744;
+    }
+    .header button{
+        background-color: #aaa7d7;
+        border-color: #1e013f;
+        color: #c068e2;
+        width: 100px;
+        height: 67px;
+        margin-left: auto;
+        border-radius: 0;
+    }
+    .header a{
+        text-decoration: none;
+        font-size: medium;
+    }
+    .banner {
+      grid-area: banner;
+      width: 100%;
+      min-height: 480px;
+      margin: auto;
+      padding: 35px;
+      border: 2px solid #aaa7d7;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 35px;
+      align-items: center;
+      color: #814a97;
+    }
+    .banner a{
+      text-decoration: none;
+        font-size: medium;
+    }
+
+    .logo {
+      display: inline-flex;
+      width: 100px;
+      height: 100px;
+      border: 2px solid #252744;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+    }
+    .logo img{
+        border-radius: 50px;
+       width: 100px;
+       height: 100%;
+       object-fit: cover;         
+       display: block;
+    }
+
+    h1 {
+      font-size: clamp(30px, 4vw, 52px);
+    }
+
+    .botoes {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 28px;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: 1px solid #6d547e;
+      border-radius: 15px;
+      background: white;
+      color: #252744;
+      cursor: pointer;
+    }
+
+    .principal {
+      background: #b861b0;
+      color: white;
+    }
+
+    .carrossel {
+      height: 290px;
+      border-radius: 25px;
+      overflow: hidden;
+      position: relative;
+      background: #55547e;
+      color: white;
+    }
+
+    .slide {
+      display: none;
+      height: 100%;
+      padding: 35px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .slide.ativo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      animation: aparecer 0.6s;
+    }
+
+    .slide h2 {
+      font-size: 30px;
+      margin-bottom: 5px;
+    }
+
+    .slide p {
+      line-height: 1.5;
+    }
+
+    .seta {
+      position: absolute;
+      top: 45%;
+      border: none;
+      border-radius: 50%;
+      background: #252744cc;
+      color: white;
+      font-size: 20px;
+      padding: 10px 14px;
+    }
+
+    .anterior {
+      left: 12px;
+    }
+
+    .proxima {
+      right: 12px;
+    }
+
+    .pontos {
+      position: absolute;
+      bottom: 15px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 9px;
+    }
+
+    .ponto {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: none;
+      border-radius: 50%;
+      background: #ffffff88;
+    }
+
+    .ponto.ativo {
+      background: white;
+    }
+
+    .info {
+      margin-top: 18px;
+      padding: 22px;
+      border-radius: 22px;
+      background: #e6e3fa;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 700px) {
+      body {
+        padding: 12px;
+      }
+
+      .banner {
+        grid-template-columns: 1fr;
+        padding: 22px;
+        border-radius: 28px;
+      }
+
+      .carrossel {
+        height: 300px;
+      }
+    }
+    .destaqueForum{
+        display: grid;
+        grid-area: destaqueForum;
+        background-color: #f5f3ff;
+        max-width: 1200px;
+        min-height: 500px;
+        margin: 30px 20px;
+        padding: 24px;
+    }
+    .cards{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 12px;
+        align-items: start;
+    }
+    .comentarioResposta{
+        width: calc(100% - 60px);
+        max-width: 800px;
+        margin: 0;
+        padding-top: 5px;
+        padding-left: 5px;
+    }
+     .corpo{
+        flex: 1;
+        min-width: 0;
+    }
+    .avatarMedico{
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: #aaa7d7;
+        font-weight: bold;
+    }
+    .balao{
+        display: inline-block;
+        max-width: 100%;
+        padding: 10px 16px;
+        border-radius: 18px;
+        background: #e6e3fa;
+        color: #252744;
+    }
+    .medicoAutor{
+        display: block;
+        margin-bottom: 4px;
+        font-size: 14px;
+    }
+    .balao p{
+        margin: 0;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+    .faq{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        align-items: stretch;
+        grid-area: faq;
+        max-width: 1800px;
+        min-height: 600px;
+        padding: 50px;
+        background-color: #f5f3ff;
+        border-top: 2px solid purple;
+
+    }
+
+    .faq h2{
+        
+        grid-column: 1 / -1;
+        margin: 0;
+    }
+    .faq p{
+        text-align: center;
+    }
+    .cardsFaq{
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        width: 50%;
+    }
+    .infooo{
+        padding: 28px;
+        border: 1px solid #c068e2;
+        border-top: 6px solid #aaa7d7;
+        border-radius: 26px;
+        background: white;
+    }
+    .sobre{
+        margin: 0 0 12px;
+        font-size: 20px;
+        color: #252744;
+    }
+    .infooo p{
+        margin: 0 0 12px;
+        line-height: 1.6;
+        color: #55547e;
+    }
+    .cardsFaq h2{
+        margin: 0 0 28px;
+        font-size: clamp(26px, 3vw, 36px);
+        color: #252744;
+    }
+  .footer{
+    display: grid;
+    grid-area: footer;
+    background-color: #252744;
+    height: 50px;
+  }
+  .footer p{
+    text-align: center;
+    color: white;
+  }
