@@ -208,8 +208,8 @@
         grid-area: destaqueForum;
         background-color: #f5f3ff;
         max-width: 1200px;
-        min-height: 500px;
-        margin: 30px 20px;
+        min-height: auto;
+        margin: 20px auto;
         padding: 24px;
     }
     .cards{
@@ -266,14 +266,14 @@
         grid-area: faq;
         max-width: 1800px;
         min-height: 600px;
-        padding: 50px;
+        padding: 30px;
         background-color: #f5f3ff;
         border-top: 2px solid purple;
+        margin: 0 auto;
 
     }
 
     .faq h2{
-        
         grid-column: 1 / -1;
         margin: 0;
     }
@@ -283,10 +283,10 @@
     .cardsFaq{
         display: flex;
         flex-direction: column;
-        height: 100%;
-        width: 50%;
+        
     }
     .infooo{
+      flex: 1;
         padding: 28px;
         border: 1px solid #c068e2;
         border-top: 6px solid #aaa7d7;
