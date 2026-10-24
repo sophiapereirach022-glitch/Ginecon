@@ -231,3 +231,42 @@ button:hover {
 .card-respostas:hover {
     background: #e5e7eb;
 }
+
+/* ── USUÁRIO (cabeçalho) ── */
+#usuario-area {
+    display: flex;
+    gap: .5rem;
+}
+
+#BotaoSair {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+#BotaoSair:hover {
+    background: #fecaca;
+}
+
+/* ── AÇÕES DO CARD (Respostas + Excluir) ── */
+.card-acoes {
+    display: flex;
+    gap: .5rem;
+    margin-top: .8rem;
+}
+
+.card-acoes .card-respostas {
+    margin-top: 0;
+    flex: 1;
+    width: auto;
+}
+
+.card-excluir {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+}
+
+.card-excluir:hover {
+    background: #fecaca;
+}

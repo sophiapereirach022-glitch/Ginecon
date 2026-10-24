@@ -1,4 +1,4 @@
-import { showToast, saveToLocalStorage, loadFromLocalStorage } from "../reutilizaveis/index.js";
+import { showToast, saveToLocalStorage, loadFromLocalStorage, abreviarNomeFuncionario } from "../reutilizaveis/index.js";
 
 const botaoAbrirModal = document.querySelector('#PostarComentario');
 const botaoFecharModal = document.querySelector('#botao-fechar-modal-postagem');
@@ -12,6 +12,33 @@ const selectEspecialidade = document.querySelector('#especialidade-postagem');
 let topicoAtivo = 'Todos';
 
 const POSTAGENS_KEY = 'postagens';
+const MINHAS = '__minhas';   // valor do tópico "Minhas perguntas"
+
+const botaoUsuario = document.querySelector('#BotaoUsuario');
+const botaoSair = document.querySelector('#BotaoSair');
+
+// ── USUÁRIO LOGADO ──
+
+function obterUsuarioLogado() {
+    const id = localStorage.getItem('idUsuario');
+    const tipo = localStorage.getItem('tipoUsuario');
+    if (!id) return null;
+
+    const chave = tipo === 'medico' ? 'Medicos' : 'UsuarioComum';
+    const usuario = loadFromLocalStorage(chave).find(u => u.id === id);
+    return usuario ? { id: usuario.id, nome: usuario.nome, tipo } : null;
+}
+
+const usuarioAtual = obterUsuarioLogado();
+
+
+botaoUsuario.textContent = abreviarNomeFuncionario(usuarioAtual?.nome) || 'Usuário';
+
+botaoSair.addEventListener('click', () => {
+    localStorage.removeItem('idUsuario');
+    localStorage.removeItem('tipoUsuario');
+    window.location.href = 'forum.html';
+});
 
 // ── RENDERIZAÇÃO ──
 function formatarData(iso) {
@@ -27,7 +54,9 @@ function criarCard(postagem) {
 
     const autor = document.createElement('span');
     autor.classList.add('card-autor');
-    autor.textContent = postagem.anonimo ? 'Anônimo' : (postagem.autor || 'Usuário');
+    autor.textContent = postagem.anonimo
+        ? 'Anônimo'
+        : (abreviarNomeFuncionario(postagem.autorNome) || 'Usuário');
 
     const data = document.createElement('span');
     data.classList.add('card-data');
@@ -50,7 +79,20 @@ function criarCard(postagem) {
     botaoRespostas.classList.add('card-respostas');
     botaoRespostas.textContent = 'Respostas';
 
-    card.append(topo, pergunta, tag, botaoRespostas);
+    const acoes = document.createElement('div');
+    acoes.classList.add('card-acoes');
+    acoes.appendChild(botaoRespostas);
+
+    // só o dono da pergunta vê o botão de excluir
+    if (usuarioAtual && postagem.autorId === usuarioAtual.id) {
+        const botaoExcluir = document.createElement('button');
+        botaoExcluir.classList.add('card-excluir');
+        botaoExcluir.textContent = 'Excluir';
+        botaoExcluir.addEventListener('click', () => excluirPostagem(postagem.id));
+        acoes.appendChild(botaoExcluir);
+    }
+
+    card.append(topo, pergunta, tag, acoes);
     return card;
 }
 
@@ -60,7 +102,8 @@ function renderizarPostagens() {
     listaPostagens.innerHTML = '';
 
     const filtradas = [...postagens].reverse().filter(p =>
-        (topicoAtivo === 'Todos' || p.especialidade === topicoAtivo) &&
+        (topicoAtivo === 'Todos' ||
+            (topicoAtivo === MINHAS ? p.autorId === usuarioAtual?.id : p.especialidade === topicoAtivo)) &&
         p.pergunta.toLowerCase().includes(termo)
     );
 
@@ -76,10 +119,20 @@ function renderizarPostagens() {
     filtradas.forEach(p => listaPostagens.appendChild(criarCard(p)));
 }
 
+function excluirPostagem(id) {
+    if (!confirm('Excluir esta pergunta?')) return;
+
+    const postagens = (loadFromLocalStorage(POSTAGENS_KEY) || []).filter(p => p.id !== id);
+    saveToLocalStorage(POSTAGENS_KEY, postagens);
+
+    showToast('Pergunta excluída.', 'success');
+    renderizarPostagens();
+}
+
 // ── TÓPICOS (barra lateral) ──
 
 function montarTopicos() {
-    const topicos = [{ valor: 'Todos', texto: 'Todos' }];
+    const topicos = [{ valor: 'Todos', texto: 'Todos' }, { valor: MINHAS, texto: 'Minhas perguntas' }];
     [...selectEspecialidade.options].forEach(o => {
         if (o.value !== 'Desconhecida') topicos.push({ valor: o.value, texto: o.textContent });
     });
@@ -141,8 +194,9 @@ function registrarPostagem() {
         pergunta,
         especialidade,
         anonimo,
-        //Vou precisar do usuario depois pra colocar as infos
-        autor: anonimo ? 'Anônimo' : null,
+        autorId: usuarioAtual.id,                       
+        autorNome: anonimo ? null : usuarioAtual.nome,  
+        autorTipo: usuarioAtual.tipo,
         data: new Date().toISOString()
     };
 
