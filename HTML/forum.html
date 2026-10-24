@@ -23,9 +23,13 @@
     <div id="layout">
         <!-- Coluna principal: perguntas -->
         <main id="feed">
-            <div id="barra-feed">
-                <button id="PostarComentario">+ Postar</button>
-            </div>
+           <div id="barra-feed">
+    <button id="PostarComentario">+ Postar</button>
+    <div id="ordenacao">
+        <button class="ordem ativo" data-ordem="relevantes">Relevantes</button>
+        <button class="ordem" data-ordem="recentes">Recentes</button>
+    </div>
+</div>
             <section id="lista-postagens"></section>
         </main>
 
