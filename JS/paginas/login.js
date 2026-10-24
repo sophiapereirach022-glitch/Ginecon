@@ -48,6 +48,7 @@ formLogin.addEventListener("submit", (event) => {
         showToast("Login realizado com sucesso!", "success");
 
         // guarda quem está logado e de que tipo ("usuario" ou "medico")
+        localStorage.setItem("nomeUsuario", usuarioEncontrado.nome);
         localStorage.setItem("tipoUsuario", tipoUsuario);
         localStorage.setItem("idUsuario", usuarioEncontrado.id);
         //remover as duas chaves no logout
