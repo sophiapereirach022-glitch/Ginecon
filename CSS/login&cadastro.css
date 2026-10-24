@@ -1,0 +1,146 @@
+:root {
+  --roxo: #7f4998;          /* cor principal */
+  --roxo-escuro: #4a2a5c;   /* textos e hover */
+  --lilas: #d4cbfa;         /* fundo do site */
+  --lilas-claro: #ece8fd;   /* detalhes suaves */
+  --branco: #ffffff;
+  --erro: #b3261e;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: var(--lilas);
+  color: var(--roxo-escuro);
+  font-family: "Figtree", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--branco);
+  border-radius: 20px;
+  padding: 36px 32px 28px;
+  box-shadow: 0 12px 40px rgba(127, 73, 152, 0.18);
+}
+
+.logo {
+  margin: 0 0 20px;
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--roxo);
+}
+
+h2 {
+  margin: 0 0 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Campos */
+.campo { margin-bottom: 14px; flex: 1; min-width: 0; }
+.linha { display: flex; gap: 12px; }
+
+label { display: block; margin-bottom: 4px; font-size: 0.9rem; font-weight: 500; }
+label span { font-weight: 400; opacity: 0.7; }
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+input[type="date"] {
+  width: 100%;
+  padding: 11px 12px;
+  font: inherit;
+  color: inherit;
+  background: var(--branco);
+  border: 1.5px solid var(--lilas);
+  border-radius: 10px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+input:hover { border-color: var(--roxo); }
+
+input:focus-visible {
+  outline: none;
+  border-color: var(--roxo);
+  box-shadow: 0 0 0 3px rgba(127, 73, 152, 0.25);
+}
+
+input:user-invalid { border-color: var(--erro); }
+
+/* Botão */
+.botao {
+  width: 100%;
+  margin-top: 6px;
+  padding: 13px;
+  font: inherit;
+  font-weight: 700;
+  color: var(--branco);
+  background: var(--roxo);
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.botao:hover { background: var(--roxo-escuro); }
+.botao:focus-visible { outline: 3px solid var(--lilas); outline-offset: 2px; }
+
+/* Seletor usuária / médico(a) */
+.tipo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 20px;
+  padding: 4px;
+  background: var(--lilas-claro);
+  border-radius: 12px;
+}
+
+.tipo input { position: absolute; opacity: 0; pointer-events: none; }
+
+.tipo label {
+  margin: 0;
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tipo input:checked + label { background: var(--roxo); color: var(--branco); }
+.tipo input:focus-visible + label { outline: 3px solid var(--roxo); outline-offset: 2px; }
+
+/* Link de troca login <-> cadastro */
+.troca { margin: 20px 0 0; text-align: center; font-size: 0.95rem; }
+
+.troca a {
+  color: var(--roxo);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.troca a:hover { color: var(--roxo-escuro); }
+.troca a:focus-visible { outline: 3px solid var(--lilas); border-radius: 4px; }
+
+/* Celular */
+@media (max-width: 480px) {
+  .card { padding: 28px 20px 22px; }
+  .linha { flex-direction: column; gap: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}

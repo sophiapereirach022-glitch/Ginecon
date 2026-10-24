@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ginecon – Criar conta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <script type="module" defer src="../JS/paginas/cadastro.js"></script>
+</head>
+<body>
+  <main class="card">
+    <h1 class="logo">ginecon</h1>
+
+    <!-- CADASTRO -->
+    <section id="cadastro" class="painel">
+      <h2>Criar conta</h2>
+
+      <div class="tipo" role="radiogroup" aria-label="Tipo de conta">
+        <input type="radio" name="tipo" id="tipo-usuario" value="usuario" checked onchange="mostrarFormUsuario()">
+        <label for="tipo-usuario">Sou usuária</label>
+        <input type="radio" name="tipo" id="tipo-medico" value="medico" onchange="mostrarFormMedico()">
+        <label for="tipo-medico">Sou médico(a)</label>
+      </div>
+
+      <!-- Usuário comum -->
+      <form id="form-usuario" action="#" method="post">
+        <div class="campo">
+          <label for="u-nome">Nome completo</label>
+          <input type="text" id="u-nome" name="nome" autocomplete="name" required>
+        </div>
+        <div class="campo">
+          <label for="u-cpf">CPF</label>
+          <input type="text" id="u-cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" required>
+        </div>
+        <div class="campo">
+          <label for="u-email">E-mail</label>
+          <input type="email" id="u-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="u-telefone">Telefone <span>(opcional)</span></label>
+            <input type="tel" id="u-telefone" name="telefone" autocomplete="tel" placeholder="(00) 00000-0000">
+          </div>
+          <div class="campo">
+            <label for="u-nasc">Data de nascimento</label>
+            <input type="date" id="u-nasc" name="nascimento" required>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="u-senha">Senha</label>
+          <input type="password" id="u-senha" name="senha" autocomplete="new-password" minlength="8" required>
+        </div>
+        <button type="submit" class="botao">Criar conta</button>
+      </form>
+
+      <!-- Médico -->
+      <form id="form-medico" action="#" method="post" hidden>
+        <div class="campo">
+          <label for="m-nome">Nome completo</label>
+          <input type="text" id="m-nome" name="nome" autocomplete="name" required>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="m-crm">CRM</label>
+            <input type="text" id="m-crm" name="crm" placeholder="000000/UF" required>
+          </div>
+          <div class="campo">
+            <label for="m-esp">Especialidade</label>
+            <input type="text" id="m-esp" name="especialidade" placeholder="Ex.: Ginecologia" required>
+          </div>
+        </div>
+        <div class="linha">
+          <div class="campo">
+            <label for="m-cpf">CPF</label>
+            <input type="text" id="m-cpf" name="cpf" inputmode="numeric" placeholder="000.000.000-00" maxlength="14" required>
+          </div>
+          <div class="campo">
+            <label for="m-nasc">Data de nascimento</label>
+            <input type="date" id="m-nasc" name="nascimento" required>
+          </div>
+        </div>
+        <div class="campo">
+          <label for="m-telefone">Telefone <span>(opcional)</span></label>
+          <input type="tel" id="m-telefone" name="telefone" autocomplete="tel" placeholder="(00) 00000-0000">
+        </div>
+        <div class="campo">
+          <label for="m-email">E-mail</label>
+          <input type="email" id="m-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="campo">
+          <label for="m-senha">Senha</label>
+          <input type="password" id="m-senha" name="senha" autocomplete="new-password" minlength="8" required>
+        </div>
+        <button type="submit" class="botao">Criar conta</button>
+      </form>
+
+      <p class="troca">Já tem conta? <a href="login.html">Entrar</a></p>
+    </section>
+  </main>
+
+  <script>
+    // Alterna entre o formulário de usuária e o de médico(a)
+    var formUsuario = document.getElementById("form-usuario");
+    var formMedico = document.getElementById("form-medico");
+
+    function mostrarFormUsuario() {
+      formUsuario.hidden = false;
+      formMedico.hidden = true;
+    }
+
+    function mostrarFormMedico() {
+      formUsuario.hidden = true;
+      formMedico.hidden = false;
+    }
+  </script>
+</body>
+</html>
