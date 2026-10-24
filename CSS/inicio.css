@@ -203,29 +203,28 @@
         height: 300px;
       }
     }
-    .destaqueForum{
-        display: grid;
+        .destaqueForum{
         grid-area: destaqueForum;
-        background-color: #f5f3ff;
+        width: 100%;
         max-width: 1200px;
-        min-height: 500px;
-        margin: 30px 20px;
+        margin: 30px auto;
         padding: 24px;
+        background-color: #f5f3ff;
     }
     .cards{
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 12px;
-        align-items: start;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 16px;
+        align-items: stretch;
     }
     .comentarioResposta{
-        width: calc(100% - 60px);
-        max-width: 800px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
         margin: 0;
-        padding-top: 5px;
-        padding-left: 5px;
+        padding: 0;
     }
-     .corpo{
+    .corpo{
         flex: 1;
         min-width: 0;
     }
@@ -233,30 +232,49 @@
         flex-shrink: 0;
         width: 44px;
         height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
         border-radius: 50%;
         background: #aaa7d7;
-        font-weight: bold;
+        border: 2px solid #c068e2;
     }
     .balao{
-        display: inline-block;
-        max-width: 100%;
-        padding: 10px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        height: 100%;
+        padding: 14px 18px;
         border-radius: 18px;
         background: #e6e3fa;
         color: #252744;
     }
     .medicoAutor{
         display: block;
-        margin-bottom: 4px;
+        margin-bottom: 2px;
         font-size: 14px;
+        color: #814a97;
     }
     .balao p{
         margin: 0;
         line-height: 1.5;
         overflow-wrap: anywhere;
+    }
+    .balao small{
+        align-self: flex-start;
+        margin-top: auto;
+        padding: 3px 10px;
+        border-radius: 999px;
+        background: white;
+        border: 1px solid #c068e2;
+        color: #814a97;
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .cards > p{
+        grid-column: 1 / -1;
+        margin: 0;
+        padding: 24px;
+        text-align: center;
+        border-radius: 18px;
+        background: #e6e3fa;
     }
     .faq{
         display: grid;
@@ -318,3 +336,27 @@
     text-align: center;
     color: white;
   }
+
+  .comentarioResposta .avatarMedico {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 0;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #814a97, #c068e2);
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(129, 74, 151, 0.35);
+}
+
+    .destaqueForum{
+        grid-area: destaqueForum;
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 50px;
+        background-color: #f5f3ff;
+    }

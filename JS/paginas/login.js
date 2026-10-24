@@ -15,7 +15,6 @@ formLogin.addEventListener("submit", (event) => {
     event.preventDefault();  
 
     const email = document.querySelector("#login-email").value.trim();
-
     const senha = document.querySelector("#login-senha").value;
 
     if (!email || !senha) {

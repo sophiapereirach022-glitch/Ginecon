@@ -514,3 +514,29 @@ select:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* ── MODO OBSERVADOR ── */
+.aviso-observador {
+  max-width: 700px;
+  margin: 0 auto 1rem;
+  padding: 0.8rem 1.1rem;
+  background: var(--lilas-claro);
+  border: 1.5px solid var(--lilas);
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+.aviso-observador a {
+  color: var(--roxo);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* o botão "Sair" vira "Entrar" (roxo, não vermelho) */
+#BotaoSair.botao-entrar {
+  background: var(--roxo);
+  color: var(--branco);
+}
+
+#BotaoSair.botao-entrar:hover { background: var(--roxo-escuro) !important; }

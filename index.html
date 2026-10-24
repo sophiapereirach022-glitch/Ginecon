@@ -1,260 +1,223 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meu site</title>
-  <link rel="stylesheet" href="CSS/inicio.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu site</title>
+    <link rel="stylesheet" href="CSS/inicio.css">
+    <script type="module" defer src="JS/paginas/inicio.js"></script>
 </head>
 
 <body>
     <header class="header">
-        <button >
-            <a href="HTML/login&cadastro.html">Login</a>
+        <button>
+            <a href="HTML/login.html">Login</a>
         </button>
     </header>
-  <section class="banner">
+    <section class="banner">
 
-    <div>
-      <div class="logo">
-        <img src="imagemLogo.jpeg" alt="LOGOGINECON">
-      </div>
+        <div>
+            <div class="logo">
+                <img src="IMG/imagemLogo.jpeg" alt="LOGOGINECON">
+            </div>
 
-      <h1>GINECON</h1>
+            <h1>GINECON</h1>
 
-      <p>
-        Aqui você encontra conteúdos, fotos
-        e informações importantes.
-      </p>
+            <p>
+                Aqui você encontra conteúdos, fotos
+                e informações importantes.
+            </p>
 
-      <div class="botoes">
-        <button class="principal">
-          <a href="#destaqueForum">Explorar</a></button>
-        <button>
-          <a href="#faq">Saiba mais</a></button>
-      </div>
-    </div>
+            <div class="botoes">
+                <button class="principal">
+                    <a href="HTML/forum.html">Fórum</a></button>
+                <button>
+                    <a href="#faq">Sobre nós</a></button>
+            </div>
+        </div>
 
-    <div>
-      <div class="carrossel">
+        <div>
+            <div class="carrossel">
 
-        <article class="slide ativo"
-          style="background-image: linear-gradient(90deg,#25274499,#25274422),url('foto1.jpg')">
-          <h2>Cada momento importa!</h2>
-          <p>Confira as últimas fotos e mensagens.</p>
-        </article>
+                <article class="slide ativo"
+                    style="background-image: linear-gradient(90deg,#25274499,#25274422),url('foto1.jpg')">
+                    <h2>Cada momento importa!</h2>
+                    <p>Confira as últimas fotos e mensagens.</p>
+                </article>
 
-        <article class="slide"
-          style="background-image: linear-gradient(90deg,#252744aa,#25274422),url('foto2.jpg')">
-          <h2>Novidades</h2>
-          <p>Veja o que há de novo em nosso site.</p>
-        </article>
+                <article class="slide"
+                    style="background-image: linear-gradient(90deg,#252744aa,#25274422),url('foto2.jpg')">
+                    <h2>Novidades</h2>
+                    <p>Veja o que há de novo em nosso site.</p>
+                </article>
 
-        <article class="slide"
-          style="background-image: linear-gradient(90deg,#252744aa,#25274422),url('foto3.jpg')">
-          <h2>Compartilhe momentos!</h2>
-          <p>Descubra fotos e mensagens especiais.</p>
-        </article>
+                <article class="slide"
+                    style="background-image: linear-gradient(90deg,#252744aa,#25274422),url('foto3.jpg')">
+                    <h2>Compartilhe momentos!</h2>
+                    <p>Descubra fotos e mensagens especiais.</p>
+                </article>
 
-        <button class="seta anterior"
-          aria-label="Mensagem anterior">‹</button>
+                <button class="seta anterior" aria-label="Mensagem anterior">‹</button>
 
-        <button class="seta proxima"
-          aria-label="Próxima mensagem">›</button>
+                <button class="seta proxima" aria-label="Próxima mensagem">›</button>
 
-        <div class="pontos"></div>
-      </div>
+                <div class="pontos"></div>
+            </div>
 
-      <div class="info">
-        <h3>ⓘ Informações</h3>
-        <p>Fique por dentro das novidades e eventos.</p>
-      </div>
-    </div>
+            <div class="info">
+                <h3>ⓘ Informações</h3>
+                <p>Fique por dentro das novidades e eventos.</p>
+            </div>
+        </div>
+    </section>
+
+     <section class="destaqueForum" id="destaqueForum">
+    <h2 class="tituloDestaque">Perguntas em destaque</h2>
+    <section class="cards" id="lista-destaques"></section>
   </section>
 
-  <section class="destaqueForum" id="destaqueForum">
-    <section class="cards">
-        
-        <article class="comentarioResposta">
-            <div class="avatarMedico" aria-hidden="true">
-            </div>
-            <div class="corpo">
-                <div class="balao">
-                    <strong class="medicoAutor">Lalaland</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                         elit. Culpa ipsa magnam dolorem possimus ipsam minima esse. 
-                         Quam fuga atque corporis corrupti perferendis
-                         harum facere cumque distinctio a eligendi! Autem, adipisci.
-                    </p>
-                </div>
-            </div>
-        </article>
+    <section class="faq" id="faq">
+        <h2>Sobre nos</h2>
+        <section class="cardsFaq">
+            <article class="infooo">
 
-         <article class="comentarioResposta">
-            <div class="avatarMedico" aria-hidden="true">
-            </div>
-            <div class="corpo">
-                <div class="balao">
-                    <strong class="medicoAutor">Lalaland</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                         elit. Culpa ipsa magnam dolorem possimus ipsam minima esse. 
-                         Quam fuga atque corporis corrupti perferendis
-                         harum facere cumque distinctio a eligendi! Autem, adipisci.
-                    </p>
+                <div class="corpo">
+                    <div class="balao">
+                        <strong class="sobre">Colica</strong>
+                        <p>
+                            A cólica acontece porque o útero se contrai para eliminar o endométrio, e substâncias
+                            chamadas
+                            prostaglandinas intensificam essa dor. Para aliviar, pode ajudar usar compressa morna na
+                            barriga, fazer movimentos leves ou alongamentos,
+                            descansar e se hidratar. Medicamentos só devem ser usados com orientação de um profissional
+                            de saúde.
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </article>
-
-         <article class="comentarioResposta">
-            <div class="avatarMedico" aria-hidden="true">
-            </div>
-            <div class="corpo">
-                <div class="balao">
-                    <strong class="medicoAutor">Lalaland</strong>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                         elit. Culpa ipsa magnam dolorem possimus ipsam minima esse. 
-                         Quam fuga atque corporis corrupti perferendis
-                         harum facere cumque distinctio a eligendi! Autem, adipisci.
-                    </p>
-                </div>
-            </div>
-        </article>
-    </section>
-  </section>
-
-  <section class="faq" id="faq">
-    <h2>Sobre nos</h2>
-    <section class="cardsFaq">
-        <article class="infooo">
-        
-            <div class="corpo">
-                <div class="balao">
-                    <strong class="sobre">Colica</strong>
-                    <p>
-                        A cólica acontece porque o útero se contrai para eliminar o endométrio, e substâncias chamadas 
-                        prostaglandinas intensificam essa dor. Para aliviar, pode ajudar usar compressa morna na barriga, fazer movimentos leves ou alongamentos,
-                         descansar e se hidratar. Medicamentos só devem ser usados com orientação de um profissional de saúde.
-                    </p>
-                </div>
-            </div>
-        </article>
-    </section>
+            </article>
+        </section>
 
         <section class="cardsFaq">
-        <article class="infooo">
-            <div class="corpo">
-                <div class="balao">
-                    <strong class="sobre">Ciclo menstrual</strong>
-                    <p>
-                        O ciclo conta do primeiro dia de uma menstruação até o 
-                        dia anterior à próxima. Em geral dura entre 21 e 35 dias, e o 
-                        sangramento costuma durar de 3 a 7 dias. Anotar as datas em um calendário ou
-                         aplicativo ajuda a conhecer o seu padrão.
-                    </p>
+            <article class="infooo">
+                <div class="corpo">
+                    <div class="balao">
+                        <strong class="sobre">Ciclo menstrual</strong>
+                        <p>
+                            O ciclo conta do primeiro dia de uma menstruação até o
+                            dia anterior à próxima. Em geral dura entre 21 e 35 dias, e o
+                            sangramento costuma durar de 3 a 7 dias. Anotar as datas em um calendário ou
+                            aplicativo ajuda a conhecer o seu padrão.
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </article>
-    </section>
-    <section class="cardsFaq">
-        <article class="infooo">
-            <div class="corpo">
-                <div class="balao">
-                    <strong class="sobre">Quando procurar ajuda</strong>
-                    <p>
-                        Procure um profissional de saúde se a cólica atrapalhar suas atividades do dia a dia, se o fluxo for muito intenso 
-                        (trocar o absorvente em menos de 2 horas), se o ciclo
-                         for muito irregular, se a menstruação durar mais de 7 dias ou se houver dor forte fora do período menstrual.
-                    </p>
+            </article>
+        </section>
+        <section class="cardsFaq">
+            <article class="infooo">
+                <div class="corpo">
+                    <div class="balao">
+                        <strong class="sobre">Quando procurar ajuda</strong>
+                        <p>
+                            Procure um profissional de saúde se a cólica atrapalhar suas atividades do dia a dia, se o
+                            fluxo for muito intenso
+                            (trocar o absorvente em menos de 2 horas), se o ciclo
+                            for muito irregular, se a menstruação durar mais de 7 dias ou se houver dor forte fora do
+                            período menstrual.
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </article>
-    </section>
+            </article>
+        </section>
 
-      <section class="cardsFaq">
-        <article class="infooo">
-            <div class="corpo">
-                <div class="balao">
-                    <strong class="sobre">TPM</strong>
-                    <p>
-                        A TPM são sintomas físicos e emocionais que surgem dias antes da menstruação, como irritação, inchaço, 
-                        sensibilidade nos seios e cansaço. Sono regular, alimentação equilibrada e atividade física costumam amenizar.
-                    </p>
+        <section class="cardsFaq">
+            <article class="infooo">
+                <div class="corpo">
+                    <div class="balao">
+                        <strong class="sobre">TPM</strong>
+                        <p>
+                            A TPM são sintomas físicos e emocionais que surgem dias antes da menstruação, como
+                            irritação, inchaço,
+                            sensibilidade nos seios e cansaço. Sono regular, alimentação equilibrada e atividade física
+                            costumam amenizar.
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </article>
-    </section>
+            </article>
+        </section>
 
-     <section class="cardsFaq">
-        <article class="infooo">
-            <div class="corpo">
-                <div class="balao">
-                    <strong class="sobre">Cuidados</strong>
-                    <p>
-                        Trocar o absorvente a cada 4 a 6 horas ajuda a prevenir irritações e infecções. Coletores menstruais 
-                        podem ficar até 12 horas, conforme orientação do fabricante. Lave as mãos antes e depois de trocar, e use só água e 
-                        sabonete neutro na região externa. Duchas vaginais não são necessárias e podem desequilibrar a flora natural.
-                    </p>
+        <section class="cardsFaq">
+            <article class="infooo">
+                <div class="corpo">
+                    <div class="balao">
+                        <strong class="sobre">Cuidados</strong>
+                        <p>
+                            Trocar o absorvente a cada 4 a 6 horas ajuda a prevenir irritações e infecções. Coletores
+                            menstruais
+                            podem ficar até 12 horas, conforme orientação do fabricante. Lave as mãos antes e depois de
+                            trocar, e use só água e
+                            sabonete neutro na região externa. Duchas vaginais não são necessárias e podem desequilibrar
+                            a flora natural.
+                        </p>
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
+        </section>
     </section>
-  </section>
-      <footer class="footer">
+    <footer class="footer">
         <p>O conteúdo deste site tem caráter educativo e não substitui consulta médica.</p>
-      </footer>
+    </footer>
 
-  <script>
-    const slides = document.querySelectorAll(".slide");
-    const pontos = document.querySelector(".pontos");
-    let atual = 0;
-    let temporizador;
+    <script>
+        const slides = document.querySelectorAll(".slide");
+        const pontos = document.querySelector(".pontos");
+        let atual = 0;
+        let temporizador;
 
-    slides.forEach((slide, i) => {
-      const ponto = document.createElement("button");
-      ponto.className = "ponto";
-      ponto.setAttribute("aria-label", `Mostrar mensagem ${i + 1}`);
-      ponto.addEventListener("click", () => mostrar(i));
-      pontos.appendChild(ponto);
-    });
+        slides.forEach((slide, i) => {
+            const ponto = document.createElement("button");
+            ponto.className = "ponto";
+            ponto.setAttribute("aria-label", `Mostrar mensagem ${i + 1}`);
+            ponto.addEventListener("click", () => mostrar(i));
+            pontos.appendChild(ponto);
+        });
 
-    const botoes = pontos.querySelectorAll(".ponto");
+        const botoes = pontos.querySelectorAll(".ponto");
 
-    function mostrar(indice) {
-      atual = (indice + slides.length) % slides.length;
+        function mostrar(indice) {
+            atual = (indice + slides.length) % slides.length;
 
-      slides.forEach((slide, i) => {
-        slide.classList.toggle("ativo", i === atual);
-        botoes[i].classList.toggle("ativo", i === atual);
-      });
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("ativo", i === atual);
+                botoes[i].classList.toggle("ativo", i === atual);
+            });
 
-      reiniciar();
-    }
+            reiniciar();
+        }
 
-    function reiniciar() {
-      clearInterval(temporizador);
-      temporizador = setInterval(() => {
-        atual = (atual + 1) % slides.length;
-        mostrarSemReiniciar();
-      }, 5000);
-    }
+        function reiniciar() {
+            clearInterval(temporizador);
+            temporizador = setInterval(() => {
+                atual = (atual + 1) % slides.length;
+                mostrarSemReiniciar();
+            }, 5000);
+        }
 
-    function mostrarSemReiniciar() {
-      slides.forEach((slide, i) => {
-        slide.classList.toggle("ativo", i === atual);
-        botoes[i].classList.toggle("ativo", i === atual);
-      });
-    }
+        function mostrarSemReiniciar() {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("ativo", i === atual);
+                botoes[i].classList.toggle("ativo", i === atual);
+            });
+        }
 
-    document.querySelector(".anterior").onclick = () =>
-      mostrar(atual - 1);
+        document.querySelector(".anterior").onclick = () =>
+            mostrar(atual - 1);
 
-    document.querySelector(".proxima").onclick = () =>
-      mostrar(atual + 1);
+        document.querySelector(".proxima").onclick = () =>
+            mostrar(atual + 1);
 
-    mostrar(0);
-  </script>
+        mostrar(0);
+    </script>
 </body>
+
 </html>

@@ -33,7 +33,29 @@ function crmJaCadastrado(crm) {
     return medicos.some(m => m.crm.toLowerCase() === crm.toLowerCase());
 }
  
+export function calcularIdade(nascimento) {
+    if (!nascimento) {
+        return null;
+    }
 
+    const partes = nascimento.split("-");
+    const ano = Number(partes[0]);
+    const mes = Number(partes[1]);
+    const dia = Number(partes[2]);
+
+    const hoje = new Date();
+    let idade = hoje.getFullYear() - ano;
+
+    const mesAtual = hoje.getMonth() + 1;
+    const diaAtual = hoje.getDate();
+
+
+    if (mesAtual < mes || (mesAtual === mes && diaAtual < dia)) {
+        idade--;
+    }
+
+    return idade;
+}
 function cadastrarUsuarioComum() {
     const nome = document.querySelector("#u-nome").value.trim();
     const cpf = document.querySelector("#u-cpf").value.trim();

@@ -21,6 +21,7 @@ const selectEspecialidade = document.querySelector("#especialidade-postagem");
 const barraOrdenacao = document.querySelector("#ordenacao");
 const botaoUsuario = document.querySelector("#BotaoUsuario");
 const botaoSair = document.querySelector("#BotaoSair");
+const avisoObservador = document.querySelector("#aviso-observador");
 
 // ---------- Variáveis que mudam enquanto a página é usada ----------
 let topicoAtivo = "Todos";       // tópico escolhido na barra lateral
@@ -31,14 +32,13 @@ let respostasAbertas = [];       // ids das perguntas com a área de respostas a
 // O login.js guardou o id e o tipo ("usuario" ou "medico"). Com eles, achamos a pessoa na lista certa.
 const idLogado = localStorage.getItem("idUsuario");
 const tipoLogado = localStorage.getItem("tipoUsuario");
-const ehMedico = tipoLogado === "medico";
 
 let usuarioAtual = null; // continua null se ninguém estiver logado
 
 if (idLogado) {
     let lista = [];
 
-    if (ehMedico) {
+    if (tipoLogado === "medico") {
         lista = loadFromLocalStorage(STORAGE_KEY_MEDICO);
     } else {
         lista = loadFromLocalStorage(STORAGE_KEY_USUARIOCOMUM);
@@ -48,14 +48,34 @@ if (idLogado) {
     usuarioAtual = lista.find(u => u.id === idLogado) || null;
 }
 
-botaoUsuario.textContent = abreviarNomeFuncionario(usuarioAtual?.nome) || "Usuário";
+// só é médico se o tipo for "medico" E a pessoa foi realmente encontrada
+const ehMedico = usuarioAtual !== null && tipoLogado === "medico";
 
-botaoSair.addEventListener("click", () => {
-    localStorage.removeItem("nomeUsuario");
-    localStorage.removeItem("idUsuario");
-    localStorage.removeItem("tipoUsuario");
-    window.location.href = "forum.html";
-});
+// ---------- Modo observador ----------
+// Quem entra no fórum sem login (ou com login inválido) é "observador": só lê.
+const ehObservador = usuarioAtual === null;
+
+if (ehObservador) {
+    botaoUsuario.textContent = "Observador";
+
+    botaoSair.textContent = "Entrar";
+    botaoSair.classList.add("botao-entrar");
+    botaoSair.addEventListener("click", () => {
+        window.location.href = "login.html";
+    });
+
+    botaoAbrirModal.hidden = true;     // esconde o botão "+ Postar"
+    avisoObservador.hidden = false;    // mostra a faixa de aviso
+} else {
+    botaoUsuario.textContent = abreviarNomeFuncionario(usuarioAtual.nome) || "Usuário";
+
+    botaoSair.addEventListener("click", () => {
+        localStorage.removeItem("nomeUsuario");
+        localStorage.removeItem("idUsuario");
+        localStorage.removeItem("tipoUsuario");
+        window.location.href = "../index.html";
+    });
+}
 
 // Usada antes de ações que precisam de login (postar, votar, responder, denunciar)
 function exigirLogin() {
@@ -94,6 +114,11 @@ function calcularIdade(nascimento) {
     // se o aniversário ainda não chegou este ano, a pessoa ainda não fez essa idade
     if (mesAtual < mes || (mesAtual === mes && diaAtual < dia)) {
         idade--;
+    }
+
+    // idade impossível: provavelmente a data foi cadastrada errada
+    if (idade < 0 || idade > 120) {
+        return null;
     }
 
     return idade;
@@ -368,10 +393,10 @@ function criarSecaoRespostas(postagem) {
     });
 
     // Formulário: só aparece para quem está logado e NÃO é o autor da pergunta
-    if (!usuarioAtual) {
+    if (ehObservador) {
         const aviso = document.createElement("p");
         aviso.classList.add("aviso-resposta");
-        aviso.textContent = "Faça login para responder.";
+        aviso.textContent = "Você está no modo observador. Entre na sua conta para responder.";
         secao.appendChild(aviso);
     } else if (postagem.autorId === usuarioAtual.id) {
         const aviso = document.createElement("p");
@@ -433,7 +458,12 @@ function criarColunaVotos(postagem) {
     if (meuVoto === -1) botaoBaixo.classList.add("votado");
     botaoBaixo.addEventListener("click", () => votar(postagem.id, -1));
 
-    coluna.append(botaoCima, placar, botaoBaixo);
+    // observador vê só a pontuação, sem as setas de voto
+    if (ehObservador) {
+        coluna.append(placar);
+    } else {
+        coluna.append(botaoCima, placar, botaoBaixo);
+    }
     return coluna;
 }
 
@@ -614,7 +644,9 @@ function renderizarPostagens() {
     if (filtradas.length === 0) {
         const vazio = document.createElement("p");
         if (postagens.length === 0) {
-            vazio.textContent = "Nenhuma pergunta ainda. Seja o primeiro a postar!";
+            vazio.textContent = ehObservador
+                ? "Nenhuma pergunta ainda."
+                : "Nenhuma pergunta ainda. Seja o primeiro a postar!";
         } else {
             vazio.textContent = "Nenhuma pergunta encontrada.";
         }
@@ -641,14 +673,46 @@ barraOrdenacao.querySelectorAll("button").forEach(botao => {
     });
 });
 
+// ---------- Conserta postagens salvas em versões antigas ----------
+// Garante que todo campo usado pelo código exista (assim não dá erro de "undefined").
+// Observador não grava nada no navegador, então a correção só é salva para quem está logado.
+function corrigirDadosAntigos() {
+    const postagens = loadFromLocalStorage(STORAGE_KEY_POSTAGENS);
+
+    postagens.forEach(p => {
+        // na versão antiga, votos era um objeto { id: valor }; agora é uma lista
+        if (!Array.isArray(p.votos)) {
+            p.votos = [];
+        }
+        if (!Array.isArray(p.denuncias)) {
+            p.denuncias = [];
+        }
+        if (!Array.isArray(p.respostas)) {
+            p.respostas = [];
+        }
+
+        p.respostas.forEach(r => {
+            if (!Array.isArray(r.denuncias)) {
+                r.denuncias = [];
+            }
+        });
+    });
+
+    if (!ehObservador) {
+        saveToLocalStorage(STORAGE_KEY_POSTAGENS, postagens);
+    }
+}
+
 // ---------- Tópicos (barra lateral) ----------
 
 function montarTopicos() {
     // cada tópico tem um valor (usado no filtro) e um texto (mostrado na tela)
-    const topicos = [
-        { valor: "Todos", texto: "Todos" },
-        { valor: "minhas", texto: "Minhas perguntas" }
-    ];
+    const topicos = [{ valor: "Todos", texto: "Todos" }];
+
+    // "Minhas perguntas" não faz sentido para quem não está logado
+    if (!ehObservador) {
+        topicos.push({ valor: "minhas", texto: "Minhas perguntas" });
+    }
 
     // as especialidades vêm do <select> do modal, então só mudamos o HTML para criar novas
     [...selectEspecialidade.options].forEach(opcao => {
@@ -731,8 +795,8 @@ function registrarPostagem() {
         especialidade: especialidade,
         anonimo: anonimo,
         autorId: usuarioAtual.id,
-        autorNome: anonimo ? null : usuarioAtual.nome, // em post anônimo o nome não é guardado
-        autorNascimento: usuarioAtual.datanasc,        // a idade é calculada a partir dela
+        autorNome: anonimo ? null : usuarioAtual.nome,
+        autorNascimento: usuarioAtual.datanasc,       
         data: new Date().toISOString(),
         respostas: [],
         votos: [],
@@ -751,6 +815,7 @@ function registrarPostagem() {
 
 botaoConfirmar.addEventListener("click", registrarPostagem);
 
-
+// ---------- Início ----------
+corrigirDadosAntigos();
 montarTopicos();
 renderizarPostagens();
