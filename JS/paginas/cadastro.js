@@ -120,14 +120,13 @@ function cadastrarMedico() {
     showToast("Médico cadastrado com sucesso!!", "success");
 }
 
-// Liga cada formulário à sua função.
-// preventDefault() impede o navegador de recarregar a página ao enviar.
-formUsuario.addEventListener("submit", function (event) {
-    event.preventDefault();
+/*FORMS DOS COISO DE  */
+formUsuario.addEventListener("submit", (e) => {
+    e.preventDefault();
     cadastrarUsuarioComum();
 });
 
-formMedico.addEventListener("submit", function (event) {
-    event.preventDefault();
+formMedico.addEventListener("submit", (e) => {
+    e.preventDefault();
     cadastrarMedico();
 });

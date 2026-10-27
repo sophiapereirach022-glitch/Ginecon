@@ -86,6 +86,7 @@ function criarCardDestaque(postagem) {
     const pontos = calcularPontuacao(postagem);
     const idade = calcularIdade(postagem.autorNascimento);
 
+
     let nomeAutor = "Anônimo";
     if (!postagem.anonimo) {
         nomeAutor = abreviarNomeFuncionario(postagem.autorNome) || "Usuário";

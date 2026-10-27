@@ -1,243 +1,260 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu site</title>
-    <link rel="stylesheet" href="CSS/inicio.css">
-    <script type="module" defer src="JS/paginas/inicio.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meu site</title>
+  <link rel="stylesheet" href="CSS/inicio.css">
+  <script type="module" defer src="JS/paginas/inicio.js"></script>
 </head>
 
 <body>
-    <header class="header">
-<<<<<<< HEAD
-        <button>
-            <a href="HTML/login.html">Login</a>
-=======
-        <button >
-<<<<<<< HEAD
-            <a href="HTML/login.html">Login</a>
-=======
-            <a href="HTML/login&cadastro.html">Login</a>
->>>>>>> 9a666cef6c05a3f18b20d938527be11dbe1a0c4e
->>>>>>> 9ff67b91ff94127e5274f75e4b6175c80df1849e
-        </button>
-    </header>
-    <section class="banner">
+        <header class="header">
+        <nav class="nav" aria-label="Navegação principal">
+            <a class="nav-logo" href="#topo">GINECON</a>
 
-<<<<<<< HEAD
-        <div>
-            <div class="logo">
-                <img src="IMG/imagemLogo.jpeg" alt="LOGOGINECON">
-            </div>
-=======
+            <ul class="nav-lista">
+                <li><a href="#topo">Início</a></li>
+                <li><a href="HTML/forum.html">Fórum</a></li>
+                <li><a href="#destaqueForum">Destaques</a></li>
+                <li><a href="#faq">Se conhecendo</a></li>
+                <li><a href="#snos">Sobre nós</a></li>
+            </ul>
+
+            <a class="nav-entrar" href="HTML/login.html">Login</a>
+        </nav>
+    </header>
+  <section class="banner" id ="topo">
+
     <div>
       <div class="logo">
-<<<<<<< HEAD
         <img src="IMG/imagemLogo.jpeg" alt="LOGOGINECON">
-=======
-        <img src="imagemLogo.jpeg" alt="LOGOGINECON">
->>>>>>> 9a666cef6c05a3f18b20d938527be11dbe1a0c4e
       </div>
->>>>>>> 9ff67b91ff94127e5274f75e4b6175c80df1849e
 
-            <h1>GINECON</h1>
+      <h1>ginecon</h1>
 
-            <p>
-                Aqui você encontra conteúdos, fotos
-                e informações importantes.
-            </p>
+      <p>
+        Aqui você encontra conteúdos, fatos
+        e informações importantes.
+      </p>
 
-            <div class="botoes">
-                <button class="principal">
-                    <a href="HTML/forum.html">Fórum</a></button>
-                <button>
-                    <a href="#faq">Sobre nós</a></button>
-            </div>
-        </div>
+      <div class="botoes">
+        <button class="principal">
+          <a href="HTML/forum.html">Explorar</a></button>
+        <button>
+          <a href="#faq">Saiba mais</a></button>
+      </div>
+    </div>
 
-        <div>
-            <div class="carrossel">
+    <div>
+      <div class="carrossel">
 
-                <article class="slide ativo"
-                    style="background-image: linear-gradient(90deg,#25274499,#25274422),url('foto1.jpg')">
-                    <h2>Cada momento importa!</h2>
-                    <p>Confira as últimas fotos e mensagens.</p>
-                </article>
+        <article class="slide ativo"
+          style="background-image: linear-gradient(90deg,#25274499,#25274422),url('IMG/imagemSlide1.jpeg')">
+          <h2>Cada dúvida importa!</h2>
+          <p>Confira as últimas discussões.</p>
+        </article>
 
-                <article class="slide"
-                    style="background-image: linear-gradient(90deg,#252744aa,#25274422),url('foto2.jpg')">
-                    <h2>Novidades</h2>
-                    <p>Veja o que há de novo em nosso site.</p>
-                </article>
+        <article class="slide"
+          style="background-image: linear-gradient(90deg,#252744aa,#25274422),url('IMG/imagemSlide2.jpeg')">
+          <h2>Novidades</h2>
+          <p>Veja o que há de novo em nosso site.</p>
+        </article>
 
-                <article class="slide"
-                    style="background-image: linear-gradient(90deg,#252744aa,#25274422),url('foto3.jpg')">
-                    <h2>Compartilhe momentos!</h2>
-                    <p>Descubra fotos e mensagens especiais.</p>
-                </article>
+        <article class="slide"
+          style="background-image: linear-gradient(90deg,#252744aa,#25274422),url('IMG/imagemSlide3.jpeg')">
+          <h2>Compartilhe relatos!</h2>
+          <p>Eles são muito importantes para nossa comunidade</p>
+        </article>
 
-                <button class="seta anterior" aria-label="Mensagem anterior">‹</button>
+        <button class="seta anterior"
+          aria-label="Mensagem anterior">‹</button>
 
-                <button class="seta proxima" aria-label="Próxima mensagem">›</button>
+        <button class="seta proxima"
+          aria-label="Próxima mensagem">›</button>
 
-                <div class="pontos"></div>
-            </div>
+        <div class="pontos"></div>
+      </div>
 
-            <div class="info">
-                <h3>ⓘ Informações</h3>
-                <p>Fique por dentro das novidades e eventos.</p>
-            </div>
-        </div>
-    </section>
+      <div class="info">
+        <h3>ⓘ Informações</h3>
+        <p>Fique por dentro das novidades e eventos.</p>
+      </div>
+    </div>
+  </section>
 
-     <section class="destaqueForum" id="destaqueForum">
+    <section class="destaqueForum" id="destaqueForum">
     <h2 class="tituloDestaque">Perguntas em destaque</h2>
     <section class="cards" id="lista-destaques"></section>
   </section>
 
     <section class="faq" id="faq">
-        <h2>Sobre nos</h2>
-        <section class="cardsFaq">
-            <article class="infooo">
+    <h2>Se conhecendo</h2>
 
-                <div class="corpo">
-                    <div class="balao">
-                        <strong class="sobre">Colica</strong>
-                        <p>
-                            A cólica acontece porque o útero se contrai para eliminar o endométrio, e substâncias
-                            chamadas
-                            prostaglandinas intensificam essa dor. Para aliviar, pode ajudar usar compressa morna na
-                            barriga, fazer movimentos leves ou alongamentos,
-                            descansar e se hidratar. Medicamentos só devem ser usados com orientação de um profissional
-                            de saúde.
-                        </p>
-                    </div>
-                </div>
-            </article>
-        </section>
-
-        <section class="cardsFaq">
-            <article class="infooo">
-                <div class="corpo">
-                    <div class="balao">
-                        <strong class="sobre">Ciclo menstrual</strong>
-                        <p>
-                            O ciclo conta do primeiro dia de uma menstruação até o
-                            dia anterior à próxima. Em geral dura entre 21 e 35 dias, e o
-                            sangramento costuma durar de 3 a 7 dias. Anotar as datas em um calendário ou
-                            aplicativo ajuda a conhecer o seu padrão.
-                        </p>
-                    </div>
-                </div>
-            </article>
-        </section>
-        <section class="cardsFaq">
-            <article class="infooo">
-                <div class="corpo">
-                    <div class="balao">
-                        <strong class="sobre">Quando procurar ajuda</strong>
-                        <p>
-                            Procure um profissional de saúde se a cólica atrapalhar suas atividades do dia a dia, se o
-                            fluxo for muito intenso
-                            (trocar o absorvente em menos de 2 horas), se o ciclo
-                            for muito irregular, se a menstruação durar mais de 7 dias ou se houver dor forte fora do
-                            período menstrual.
-                        </p>
-                    </div>
-                </div>
-            </article>
-        </section>
-
-        <section class="cardsFaq">
-            <article class="infooo">
-                <div class="corpo">
-                    <div class="balao">
-                        <strong class="sobre">TPM</strong>
-                        <p>
-                            A TPM são sintomas físicos e emocionais que surgem dias antes da menstruação, como
-                            irritação, inchaço,
-                            sensibilidade nos seios e cansaço. Sono regular, alimentação equilibrada e atividade física
-                            costumam amenizar.
-                        </p>
-                    </div>
-                </div>
-            </article>
-        </section>
-
-        <section class="cardsFaq">
-            <article class="infooo">
-                <div class="corpo">
-                    <div class="balao">
-                        <strong class="sobre">Cuidados</strong>
-                        <p>
-                            Trocar o absorvente a cada 4 a 6 horas ajuda a prevenir irritações e infecções. Coletores
-                            menstruais
-                            podem ficar até 12 horas, conforme orientação do fabricante. Lave as mãos antes e depois de
-                            trocar, e use só água e
-                            sabonete neutro na região externa. Duchas vaginais não são necessárias e podem desequilibrar
-                            a flora natural.
-                        </p>
-                    </div>
-                </div>
-            </article>
-        </section>
+    <section class="cardsFaq">
+      <article class="infooo">
+        <div class="corpo">
+          <div class="balao">
+            <strong class="sobre">Cólica</strong>
+            <p>
+              A cólica acontece porque o útero se contrai para eliminar o endométrio, e substâncias chamadas
+              prostaglandinas intensificam essa dor. Para aliviar, pode ajudar usar compressa morna na barriga,
+              fazer movimentos leves ou alongamentos, descansar e se hidratar. Medicamentos só devem ser usados
+              com orientação de um profissional de saúde.
+            </p>
+          </div>
+        </div>
+      </article>
     </section>
-    <footer class="footer">
-        <p>O conteúdo deste site tem caráter educativo e não substitui consulta médica.</p>
-    </footer>
 
-    <script>
-        const slides = document.querySelectorAll(".slide");
-        const pontos = document.querySelector(".pontos");
-        let atual = 0;
-        let temporizador;
+    <section class="cardsFaq">
+      <article class="infooo">
+        <div class="corpo">
+          <div class="balao">
+            <strong class="sobre">Ciclo menstrual</strong>
+            <p>
+              O ciclo conta do primeiro dia de uma menstruação até o dia anterior à próxima. Em geral dura entre
+              21 e 35 dias, e o sangramento costuma durar de 3 a 7 dias. Anotar as datas em um calendário ou
+              aplicativo ajuda a conhecer o seu padrão.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
 
-        slides.forEach((slide, i) => {
-            const ponto = document.createElement("button");
-            ponto.className = "ponto";
-            ponto.setAttribute("aria-label", `Mostrar mensagem ${i + 1}`);
-            ponto.addEventListener("click", () => mostrar(i));
-            pontos.appendChild(ponto);
-        });
+    <section class="cardsFaq">
+      <article class="infooo">
+        <div class="corpo">
+          <div class="balao">
+            <strong class="sobre">Quando procurar ajuda</strong>
+            <p>
+              Procure um profissional de saúde se a cólica atrapalhar suas atividades do dia a dia, se o fluxo
+              for muito intenso (trocar o absorvente em menos de 2 horas), se o ciclo for muito irregular, se a
+              menstruação durar mais de 7 dias ou se houver dor forte fora do período menstrual.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
 
-        const botoes = pontos.querySelectorAll(".ponto");
+    <section class="cardsFaq">
+      <article class="infooo">
+        <div class="corpo">
+          <div class="balao">
+            <strong class="sobre">TPM</strong>
+            <p>
+              A TPM são sintomas físicos e emocionais que surgem dias antes da menstruação, como irritação,
+              inchaço, sensibilidade nos seios e cansaço. Sono regular, alimentação equilibrada e atividade
+              física costumam amenizar.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
 
-        function mostrar(indice) {
-            atual = (indice + slides.length) % slides.length;
+    <section class="cardsFaq">
+      <article class="infooo">
+        <div class="corpo">
+          <div class="balao">
+            <strong class="sobre">Cuidados</strong>
+            <p>
+              Trocar o absorvente a cada 4 a 6 horas ajuda a prevenir irritações e infecções. Coletores
+              menstruais podem ficar até 12 horas, conforme orientação do fabricante. Lave as mãos antes e
+              depois de trocar, e use só água e sabonete neutro na região externa. Duchas vaginais não são
+              necessárias e podem desequilibrar a flora natural.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
+  </section>
 
-            slides.forEach((slide, i) => {
-                slide.classList.toggle("ativo", i === atual);
-                botoes[i].classList.toggle("ativo", i === atual);
-            });
+  <section class="Snos" id="snos">
+    <h2>Sobre nós + Sites importantes para seu conhecimento</h2>
 
-            reiniciar();
-        }
+    <section class="cartaoS">
+      <article class="infooS">
+        <div class="corpo">
+          <div class="balao">
+            <strong class="sobre">Ginecon</strong>
+            <p>
+              É um site que ajuda meninas que estão começando o período menstrual. Ele explica de forma simples
+              e sem tabu o que acontece no corpo, traz dicas de higiene e de como lidar com cólicas e TPM, e
+              responde às dúvidas mais comuns sobre a menstruação.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
 
-        function reiniciar() {
-            clearInterval(temporizador);
-            temporizador = setInterval(() => {
-                atual = (atual + 1) % slides.length;
-                mostrarSemReiniciar();
-            }, 5000);
-        }
+    <section class="cartaoS">
+      <article class="infooS">
+        <div class="corpo">
+          <div class="balao">
+            <strong class="sobre">Dignidade menstrual</strong>
+            <p>
+              O Programa Dignidade Menstrual é uma iniciativa do governo federal que oferece absorventes de
+              graça para quem não tem condições de comprar. Ele existe para combater a pobreza menstrual, que
+              acontece quando uma pessoa não tem acesso a absorventes e outros itens básicos de higiene durante
+              o ciclo. Assim, ninguém precisa faltar à aula ou improvisar com materiais inadequados só porque
+              menstruou.
+            </p>
+          </div>
+        </div>
+      </article>
+    </section>
 
-        function mostrarSemReiniciar() {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle("ativo", i === atual);
-                botoes[i].classList.toggle("ativo", i === atual);
-            });
-        }
+    
 
-        document.querySelector(".anterior").onclick = () =>
-            mostrar(atual - 1);
+  <script>
+    const slides = document.querySelectorAll(".slide");
+    const pontos = document.querySelector(".pontos");
+    let atual = 0;
+    let temporizador;
 
-        document.querySelector(".proxima").onclick = () =>
-            mostrar(atual + 1);
+    slides.forEach((slide, i) => {
+      const ponto = document.createElement("button");
+      ponto.className = "ponto";
+      ponto.setAttribute("aria-label", `Mostrar mensagem ${i + 1}`);
+      ponto.addEventListener("click", () => mostrar(i));
+      pontos.appendChild(ponto);
+    });
 
-        mostrar(0);
-    </script>
+    const botoes = pontos.querySelectorAll(".ponto");
+
+    function mostrar(indice) {
+      atual = (indice + slides.length) % slides.length;
+
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("ativo", i === atual);
+        botoes[i].classList.toggle("ativo", i === atual);
+      });
+
+      reiniciar();
+    }
+
+    function reiniciar() {
+      clearInterval(temporizador);
+      temporizador = setInterval(() => {
+        atual = (atual + 1) % slides.length;
+        mostrarSemReiniciar();
+      }, 5000);
+    }
+
+    function mostrarSemReiniciar() {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle("ativo", i === atual);
+        botoes[i].classList.toggle("ativo", i === atual);
+      });
+    }
+
+    document.querySelector(".anterior").onclick = () =>
+      mostrar(atual - 1);
+
+    document.querySelector(".proxima").onclick = () =>
+      mostrar(atual + 1);
+
+    mostrar(0);
+  </script>
 </body>
-
 </html>

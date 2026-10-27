@@ -1,15 +1,13 @@
 import { showToast, saveToLocalStorage, loadFromLocalStorage, abreviarNomeFuncionario } from "../reutilizaveis/index.js";
 
-// ---------- Chaves do localStorage (as mesmas do cadastro.js e login.js) ----------
+
 const STORAGE_KEY_POSTAGENS = "postagens";
 const STORAGE_KEY_USUARIOCOMUM = "UsuarioComum";
 const STORAGE_KEY_MEDICO = "Medicos";
 
-// ---------- Regras do fórum ----------
-const LIMITE_RELEVANTE = 3;   // a partir desta pontuação a pergunta ganha o selo "Relevante"
-const LIMITE_DENUNCIAS = 6;   // ao chegar nesta quantidade de denúncias, a pergunta é removida
+const LIMITE_RELEVANTE = 3;   
+const LIMITE_DENUNCIAS = 6;
 
-// ---------- Elementos da página ----------
 const botaoAbrirModal = document.querySelector("#PostarComentario");
 const botaoFecharModal = document.querySelector("#botao-fechar-modal-postagem");
 const overlayModal = document.querySelector("#overlay-modal-postagem");
@@ -23,17 +21,15 @@ const botaoUsuario = document.querySelector("#BotaoUsuario");
 const botaoSair = document.querySelector("#BotaoSair");
 const avisoObservador = document.querySelector("#aviso-observador");
 
-// ---------- Variáveis que mudam enquanto a página é usada ----------
-let topicoAtivo = "Todos";       // tópico escolhido na barra lateral
-let ordemAtiva = "relevantes";   // "relevantes" ou "recentes"
-let respostasAbertas = [];       // ids das perguntas com a área de respostas aberta
 
-// ---------- Usuário logado ----------
-// O login.js guardou o id e o tipo ("usuario" ou "medico"). Com eles, achamos a pessoa na lista certa.
+let topicoAtivo = "Todos";       
+let ordemAtiva = "relevantes";   
+let respostasAbertas = [];  
+
 const idLogado = localStorage.getItem("idUsuario");
 const tipoLogado = localStorage.getItem("tipoUsuario");
 
-let usuarioAtual = null; // continua null se ninguém estiver logado
+let usuarioAtual = null; 
 
 if (idLogado) {
     let lista = [];
@@ -44,15 +40,11 @@ if (idLogado) {
         lista = loadFromLocalStorage(STORAGE_KEY_USUARIOCOMUM);
     }
 
-    // .find() devolve a pessoa com esse id (ou undefined se não achar)
     usuarioAtual = lista.find(u => u.id === idLogado) || null;
 }
 
-// só é médico se o tipo for "medico" E a pessoa foi realmente encontrada
 const ehMedico = usuarioAtual !== null && tipoLogado === "medico";
 
-// ---------- Modo observador ----------
-// Quem entra no fórum sem login (ou com login inválido) é "observador": só lê.
 const ehObservador = usuarioAtual === null;
 
 if (ehObservador) {
@@ -64,8 +56,8 @@ if (ehObservador) {
         window.location.href = "login.html";
     });
 
-    botaoAbrirModal.hidden = true;     // esconde o botão "+ Postar"
-    avisoObservador.hidden = false;    // mostra a faixa de aviso
+    botaoAbrirModal.hidden = true;    
+    avisoObservador.hidden = false;
 } else {
     botaoUsuario.textContent = abreviarNomeFuncionario(usuarioAtual.nome) || "Usuário";
 
@@ -77,7 +69,6 @@ if (ehObservador) {
     });
 }
 
-// Usada antes de ações que precisam de login (postar, votar, responder, denunciar)
 function exigirLogin() {
     if (usuarioAtual) {
         return true;
@@ -86,14 +77,10 @@ function exigirLogin() {
     return false;
 }
 
-// ---------- Funções auxiliares ----------
-
 function formatarData(iso) {
     return new Date(iso).toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
 }
 
-// A data de nascimento vem do input date no formato "AAAA-MM-DD".
-// split("-") separa o texto em ["AAAA", "MM", "DD"] e Number() transforma cada parte em número.
 function calcularIdade(nascimento) {
     if (!nascimento) {
         return null;
@@ -107,16 +94,13 @@ function calcularIdade(nascimento) {
     const hoje = new Date();
     let idade = hoje.getFullYear() - ano;
 
-    // getMonth() começa em 0 (janeiro = 0), por isso somamos 1
     const mesAtual = hoje.getMonth() + 1;
     const diaAtual = hoje.getDate();
 
-    // se o aniversário ainda não chegou este ano, a pessoa ainda não fez essa idade
     if (mesAtual < mes || (mesAtual === mes && diaAtual < dia)) {
         idade--;
     }
 
-    // idade impossível: provavelmente a data foi cadastrada errada
     if (idade < 0 || idade > 120) {
         return null;
     }
@@ -124,7 +108,7 @@ function calcularIdade(nascimento) {
     return idade;
 }
 
-// Cada voto é { usuarioId: "...", valor: 1 ou -1 }. A pontuação é a soma de todos os valores.
+//nao entendi muito bem
 function calcularPontuacao(postagem) {
     let soma = 0;
 
@@ -135,16 +119,12 @@ function calcularPontuacao(postagem) {
     return soma;
 }
 
-// Cria um selinho (etiqueta colorida) para o card
 function criarSelo(texto, classe) {
     const selo = document.createElement("span");
     selo.classList.add("selo", classe);
     selo.textContent = texto;
     return selo;
 }
-
-// ---------- Ações: votar, validar, responder, denunciar, excluir ----------
-// Todas seguem o mesmo caminho: carregar a lista, achar a postagem, alterar, salvar e redesenhar.
 
 function votar(id, valor) {
     if (!exigirLogin()) return;
@@ -157,7 +137,7 @@ function votar(id, valor) {
         return;
     }
 
-    // procura se este usuário já votou nesta pergunta
+    //nao entendi mutio bem
     const meuVoto = postagem.votos.find(v => v.usuarioId === usuarioAtual.id);
 
     if (!meuVoto) {
@@ -246,7 +226,6 @@ function denunciar(id) {
         return;
     }
 
-    // postagem.denuncias é uma lista com o id de cada médico que denunciou
     const jaDenunciou = postagem.denuncias.find(idMedico => idMedico === usuarioAtual.id);
     if (jaDenunciou !== undefined) {
         showToast("Você já denunciou esta pergunta.", "error");
@@ -258,7 +237,7 @@ function denunciar(id) {
     postagem.denuncias.push(usuarioAtual.id);
 
     if (postagem.denuncias.length >= LIMITE_DENUNCIAS) {
-        // .filter() cria uma nova lista SEM a pergunta denunciada
+    
         const restantes = postagens.filter(p => p.id !== id);
         saveToLocalStorage(STORAGE_KEY_POSTAGENS, restantes);
         showToast("Pergunta removida após atingir o limite de denúncias.", "success");
@@ -320,7 +299,7 @@ function excluirPostagem(id) {
     renderizarPostagens();
 }
 
-// Abre ou fecha a área de respostas de uma pergunta
+//ver essa tbm
 function alternarRespostas(id) {
     if (respostasAbertas.includes(id)) {
         respostasAbertas = respostasAbertas.filter(x => x !== id);
@@ -329,8 +308,6 @@ function alternarRespostas(id) {
     }
     renderizarPostagens();
 }
-
-// ---------- Renderização: respostas ----------
 
 function criarSecaoRespostas(postagem) {
     const secao = document.createElement("div");
@@ -355,7 +332,6 @@ function criarSecaoRespostas(postagem) {
         nome.textContent = abreviarNomeFuncionario(r.autorNome) || "Usuário";
         topo.appendChild(nome);
 
-        // respostas de médicos ganham um selo
         if (r.autorTipo === "medico") {
             const selo = criarSelo("Médico(a)", "selo-medico");
             if (r.autorCrm) {
@@ -368,7 +344,6 @@ function criarSecaoRespostas(postagem) {
         data.textContent = formatarData(r.data);
         topo.appendChild(data);
 
-        // médico pode denunciar respostas de outras pessoas
         if (ehMedico && r.autorId !== usuarioAtual.id) {
             const denuncia = r.denuncias.find(idMedico => idMedico === usuarioAtual.id);
             const jaDenunciei = denuncia !== undefined;
@@ -392,7 +367,6 @@ function criarSecaoRespostas(postagem) {
         secao.appendChild(item);
     });
 
-    // Formulário: só aparece para quem está logado e NÃO é o autor da pergunta
     if (ehObservador) {
         const aviso = document.createElement("p");
         aviso.classList.add("aviso-resposta");
@@ -423,12 +397,9 @@ function criarSecaoRespostas(postagem) {
     return secao;
 }
 
-// ---------- Renderização: card da pergunta ----------
-
 function criarColunaVotos(postagem) {
     const pontos = calcularPontuacao(postagem);
 
-    // descobre se o usuário atual já votou (1, -1 ou 0 se não votou)
     let meuVoto = 0;
     if (usuarioAtual) {
         const voto = postagem.votos.find(v => v.usuarioId === usuarioAtual.id);
@@ -458,7 +429,6 @@ function criarColunaVotos(postagem) {
     if (meuVoto === -1) botaoBaixo.classList.add("votado");
     botaoBaixo.addEventListener("click", () => votar(postagem.id, -1));
 
-    // observador vê só a pontuação, sem as setas de voto
     if (ehObservador) {
         coluna.append(placar);
     } else {
@@ -473,15 +443,12 @@ function criarAcoes(postagem) {
     const acoes = document.createElement("div");
     acoes.classList.add("card-acoes");
 
-    // botão de respostas (todo mundo vê)
     const botaoRespostas = document.createElement("button");
     botaoRespostas.classList.add("card-respostas");
     botaoRespostas.textContent = `Respostas (${postagem.respostas.length})`;
     botaoRespostas.addEventListener("click", () => alternarRespostas(postagem.id));
     acoes.appendChild(botaoRespostas);
 
-    // médico que não é o autor pode validar.
-    // Se já foi validada, só o médico que validou pode remover.
     const podeValidar = ehMedico && !ehAutor &&
         (!postagem.validacao || postagem.validacao.medicoId === usuarioAtual.id);
 
@@ -493,7 +460,6 @@ function criarAcoes(postagem) {
         acoes.appendChild(botaoValidar);
     }
 
-    // todo médico vê o botão de denunciar. No post do próprio médico ele fica desativado.
     if (ehMedico) {
         const denuncia = postagem.denuncias.find(idMedico => idMedico === usuarioAtual.id);
         const jaDenunciei = denuncia !== undefined;
@@ -514,7 +480,6 @@ function criarAcoes(postagem) {
         acoes.appendChild(botaoDenunciar);
     }
 
-    // só o dono da pergunta vê o botão de excluir
     if (ehAutor) {
         const botaoExcluir = document.createElement("button");
         botaoExcluir.classList.add("card-excluir");
@@ -535,8 +500,6 @@ function criarCard(postagem) {
     const conteudo = document.createElement("div");
     conteudo.classList.add("card-conteudo");
 
-    // ---- topo: nome (ou "Anônimo"), idade e data ----
-    // A idade aparece mesmo em posts anônimos, para o médico se basear na faixa etária.
     const idade = calcularIdade(postagem.autorNascimento);
 
     let nomeAutor = "Anônimo";
@@ -560,7 +523,6 @@ function criarCard(postagem) {
     topo.classList.add("card-topo");
     topo.append(autor, data);
 
-    // ---- selos ----
     const selos = document.createElement("div");
     selos.classList.add("card-selos");
 
@@ -574,7 +536,6 @@ function criarCard(postagem) {
         selos.appendChild(verificado);
     }
 
-    // ---- pergunta e especialidade ----
     const pergunta = document.createElement("p");
     pergunta.classList.add("card-pergunta");
     pergunta.textContent = postagem.pergunta;
@@ -587,7 +548,6 @@ function criarCard(postagem) {
         tag.textContent = postagem.especialidade;
     }
 
-    // ---- montagem final ----
     conteudo.appendChild(topo);
     if (selos.children.length > 0) {
         conteudo.appendChild(selos);
@@ -602,17 +562,12 @@ function criarCard(postagem) {
     return card;
 }
 
-// ---------- Renderização: lista de perguntas ----------
-
 function renderizarPostagens() {
     const postagens = loadFromLocalStorage(STORAGE_KEY_POSTAGENS);
     const termo = campoPesquisa.value.trim().toLowerCase();
 
     listaPostagens.innerHTML = "";
 
-    // 1) Ordenar. sort() compara duas perguntas (a e b) por vez:
-    //    número negativo = a vem antes, positivo = b vem antes.
-    //    Em "relevantes" vence a maior pontuação; se empatar (ou em "recentes"), a mais nova.
     const ordenadas = [...postagens].sort((a, b) => {
         if (ordemAtiva === "relevantes") {
             const diferenca = calcularPontuacao(b) - calcularPontuacao(a);
@@ -623,7 +578,6 @@ function renderizarPostagens() {
         return new Date(b.data) - new Date(a.data);
     });
 
-    // 2) Filtrar por tópico e pelo texto da pesquisa
     const filtradas = ordenadas.filter(p => {
         let passouNoTopico = false;
 
@@ -640,7 +594,6 @@ function renderizarPostagens() {
         return passouNoTopico && passouNaPesquisa;
     });
 
-    // 3) Desenhar
     if (filtradas.length === 0) {
         const vazio = document.createElement("p");
         if (postagens.length === 0) {
@@ -659,13 +612,10 @@ function renderizarPostagens() {
     });
 }
 
-// ---------- Ordenação (botões no topo do feed) ----------
-
 barraOrdenacao.querySelectorAll("button").forEach(botao => {
     botao.addEventListener("click", () => {
         ordemAtiva = botao.dataset.ordem;
 
-        // deixa só o botão clicado com a classe "ativo"
         barraOrdenacao.querySelectorAll("button").forEach(b => b.classList.remove("ativo"));
         botao.classList.add("ativo");
 
@@ -673,14 +623,11 @@ barraOrdenacao.querySelectorAll("button").forEach(botao => {
     });
 });
 
-// ---------- Conserta postagens salvas em versões antigas ----------
-// Garante que todo campo usado pelo código exista (assim não dá erro de "undefined").
-// Observador não grava nada no navegador, então a correção só é salva para quem está logado.
 function corrigirDadosAntigos() {
     const postagens = loadFromLocalStorage(STORAGE_KEY_POSTAGENS);
 
     postagens.forEach(p => {
-        // na versão antiga, votos era um objeto { id: valor }; agora é uma lista
+
         if (!Array.isArray(p.votos)) {
             p.votos = [];
         }
@@ -703,18 +650,13 @@ function corrigirDadosAntigos() {
     }
 }
 
-// ---------- Tópicos (barra lateral) ----------
-
 function montarTopicos() {
-    // cada tópico tem um valor (usado no filtro) e um texto (mostrado na tela)
     const topicos = [{ valor: "Todos", texto: "Todos" }];
 
-    // "Minhas perguntas" não faz sentido para quem não está logado
     if (!ehObservador) {
         topicos.push({ valor: "minhas", texto: "Minhas perguntas" });
     }
 
-    // as especialidades vêm do <select> do modal, então só mudamos o HTML para criar novas
     [...selectEspecialidade.options].forEach(opcao => {
         if (opcao.value !== "Desconhecida") {
             topicos.push({ valor: opcao.value, texto: opcao.textContent });
@@ -745,8 +687,6 @@ function montarTopicos() {
 }
 
 campoPesquisa.addEventListener("input", renderizarPostagens);
-
-// ---------- Modal de nova pergunta ----------
 
 function abrirModal() {
     if (!exigirLogin()) return;
@@ -815,7 +755,6 @@ function registrarPostagem() {
 
 botaoConfirmar.addEventListener("click", registrarPostagem);
 
-// ---------- Início ----------
 corrigirDadosAntigos();
 montarTopicos();
 renderizarPostagens();

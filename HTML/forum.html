@@ -12,20 +12,31 @@
 
 <body>
     <!-- Cabeçalho -->
-    <header id="cabecalho">
-        <h1>Ginecon Fórum</h1>
+    <header id="cabecalho" class="header">
+    <nav class="nav" aria-label="Navegação principal">
+        <a class="nav-logo" href="../index.html#topo">GINECON</a>
+
+        <ul class="nav-lista">
+            <li><a href="../index.html#topo">Início</a></li>
+            <li><a href="forum.html">Fórum</a></li>
+            <li><a href="../index.html#destaqueForum">Destaques</a></li>
+            <li><a href="../index.html#faq">Se conhecendo</a></li>
+            <li><a href="../index.html#snos">Sobre nós</a></li>
+        </ul>
+
         <div id="usuario-area">
             <button id="BotaoUsuario">Usuario</button>
             <button id="BotaoSair">Sair</button>
         </div>
-    </header>
+    </nav>
+</header>
 
     <div id="layout">
 
         <!-- Coluna principal: perguntas -->
         <main id="feed">
             <p id="aviso-observador" class="aviso-observador" hidden>
-                👀 Você está no modo observador: pode ler as perguntas e respostas, mas não pode postar, votar nem
+                Você está no modo observador: pode ler as perguntas e respostas, mas não pode postar, votar nem
                 responder.
                 <a href="login.html">Entrar</a>
             </p> 
@@ -61,11 +72,10 @@
                     <label for="especialidade-postagem">Especialidade necessária</label>
                     <select id="especialidade-postagem">
                         <option value="Desconhecida">Não sei</option>
-                        <option value="Area1">Area1</option>
-                        <option value="Area2">Area2</option>
-                        <option value="Area3">Area3</option>
-                        <option value="Area4">Area4</option>
-                        <option value="Area5">Area5</option>
+                        <option value="Saude Menstrual e Puberdade">Saude Menstrual e Puberdade</option>
+                        <option value="Contracepção e Planejamento Reprodutivo">Contracepção e Planejamento Reprodutivo</option>
+                        <option value="Sexualidade, Autonomia e Saúde Mental">Sexualidade, Autonomia e Saúde Mental</option>
+                        <option value="Endocrinologia Ginecológica">Endocrinologia Ginecológica</option>
                     </select>
                 </div>
 

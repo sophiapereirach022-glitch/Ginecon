@@ -1,367 +1,476 @@
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f5f3ff;
-      color: #252744;
-      min-height: 100vh;
-      display: grid;
-      box-sizing: border-box;
-      grid-template-columns: minmax(0, 1fr);
-      grid-template-rows: auto auto auto auto 1fr ;
-      grid-template-areas:
-           "header"
-           "banner"
-           "destaqueForum"
-           "faq"
-           "footer";
+* {
+  box-sizing: border-box;
 }
 
-    .header{
-        padding-top: 0;
-        min-height: 70px;
-        display: grid;
-        grid-area: header;
-        background-color: #252744;
-    }
-    .header button{
-        background-color: #aaa7d7;
-        border-color: #1e013f;
-        color: #c068e2;
-        width: 100px;
-        height: 67px;
-        margin-left: auto;
-        border-radius: 0;
-    }
-    .header a{
-        text-decoration: none;
-        font-size: medium;
-    }
-    .banner {
-      grid-area: banner;
-      width: 100%;
-      min-height: 480px;
-      margin: auto;
-      padding: 35px;
-      border: 2px solid #aaa7d7;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 35px;
-      align-items: center;
-      color: #814a97;
-    }
-    .banner a{
-      text-decoration: none;
-        font-size: medium;
-    }
-
-    .logo {
-      display: inline-flex;
-      width: 100px;
-      height: 100px;
-      border: 2px solid #252744;
-      border-radius: 50%;
-      align-items: center;
-      justify-content: center;
-    }
-    .logo img{
-        border-radius: 50px;
-       width: 100px;
-       height: 100%;
-       object-fit: cover;         
-       display: block;
-    }
-
-    h1 {
-      font-size: clamp(30px, 4vw, 52px);
-    }
-
-    .botoes {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 28px;
-    }
-
-    button {
-      padding: 12px 20px;
-      border: 1px solid #6d547e;
-      border-radius: 15px;
-      background: white;
-      color: #252744;
-      cursor: pointer;
-    }
-
-    .principal {
-      background: #b861b0;
-      color: white;
-    }
-
-    .carrossel {
-      height: 290px;
-      border-radius: 25px;
-      overflow: hidden;
-      position: relative;
-      background: #55547e;
-      color: white;
-    }
-
-    .slide {
-      display: none;
-      height: 100%;
-      padding: 35px;
-      background-size: cover;
-      background-position: center;
-    }
-
-    .slide.ativo {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      animation: aparecer 0.6s;
-    }
-
-    .slide h2 {
-      font-size: 30px;
-      margin-bottom: 5px;
-    }
-
-    .slide p {
-      line-height: 1.5;
-    }
-
-    .seta {
-      position: absolute;
-      top: 45%;
-      border: none;
-      border-radius: 50%;
-      background: #252744cc;
-      color: white;
-      font-size: 20px;
-      padding: 10px 14px;
-    }
-
-    .anterior {
-      left: 12px;
-    }
-
-    .proxima {
-      right: 12px;
-    }
-
-    .pontos {
-      position: absolute;
-      bottom: 15px;
-      left: 0;
-      right: 0;
-      display: flex;
-      justify-content: center;
-      gap: 9px;
-    }
-
-    .ponto {
-      width: 10px;
-      height: 10px;
-      padding: 0;
-      border: none;
-      border-radius: 50%;
-      background: #ffffff88;
-    }
-
-    .ponto.ativo {
-      background: white;
-    }
-
-    .info {
-      margin-top: 18px;
-      padding: 22px;
-      border-radius: 22px;
-      background: #e6e3fa;
-    }
-
-    @keyframes aparecer {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @media (max-width: 700px) {
-      body {
-        padding: 12px;
-      }
-
-      .banner {
-        grid-template-columns: 1fr;
-        padding: 22px;
-        border-radius: 28px;
-      }
-
-      .carrossel {
-        height: 300px;
-      }
-    }
-        .destaqueForum{
-        grid-area: destaqueForum;
-        width: 100%;
-        max-width: 1200px;
-<<<<<<< HEAD
-        margin: 30px auto;
-=======
-        min-height: auto;
-        margin: 20px auto;
->>>>>>> 9ff67b91ff94127e5274f75e4b6175c80df1849e
-        padding: 24px;
-        background-color: #f5f3ff;
-    }
-    .cards{
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 16px;
-        align-items: stretch;
-    }
-    .comentarioResposta{
-        display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        margin: 0;
-        padding: 0;
-    }
-    .corpo{
-        flex: 1;
-        min-width: 0;
-    }
-    .avatarMedico{
-        flex-shrink: 0;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: #aaa7d7;
-        border: 2px solid #c068e2;
-    }
-    .balao{
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-        height: 100%;
-        padding: 14px 18px;
-        border-radius: 18px;
-        background: #e6e3fa;
-        color: #252744;
-    }
-    .medicoAutor{
-        display: block;
-        margin-bottom: 2px;
-        font-size: 14px;
-        color: #814a97;
-    }
-    .balao p{
-        margin: 0;
-        line-height: 1.5;
-        overflow-wrap: anywhere;
-    }
-    .balao small{
-        align-self: flex-start;
-        margin-top: auto;
-        padding: 3px 10px;
-        border-radius: 999px;
-        background: white;
-        border: 1px solid #c068e2;
-        color: #814a97;
-        font-size: 12px;
-        font-weight: bold;
-    }
-    .cards > p{
-        grid-column: 1 / -1;
-        margin: 0;
-        padding: 24px;
-        text-align: center;
-        border-radius: 18px;
-        background: #e6e3fa;
-    }
-    .faq{
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        align-items: stretch;
-        grid-area: faq;
-        max-width: 1800px;
-        min-height: 600px;
-        padding: 30px;
-        background-color: #f5f3ff;
-        border-top: 2px solid purple;
-        margin: 0 auto;
-
-    }
-
-    .faq h2{
-        grid-column: 1 / -1;
-        margin: 0;
-    }
-    .faq p{
-        text-align: center;
-    }
-    .cardsFaq{
-        display: flex;
-        flex-direction: column;
-        
-    }
-    .infooo{
-      flex: 1;
-        padding: 28px;
-        border: 1px solid #c068e2;
-        border-top: 6px solid #aaa7d7;
-        border-radius: 26px;
-        background: white;
-    }
-    .sobre{
-        margin: 0 0 12px;
-        font-size: 20px;
-        color: #252744;
-    }
-    .infooo p{
-        margin: 0 0 12px;
-        line-height: 1.6;
-        color: #55547e;
-    }
-    .cardsFaq h2{
-        margin: 0 0 28px;
-        font-size: clamp(26px, 3vw, 36px);
-        color: #252744;
-    }
-  .footer{
-    display: grid;
-    grid-area: footer;
-    background-color: #252744;
-    height: 50px;
-  }
-  .footer p{
-    text-align: center;
-    color: white;
-  }
-
-  .comentarioResposta .avatarMedico {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px;
-    height: 46px;
-    border: 0;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #814a97, #c068e2);
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-    box-shadow: 0 4px 10px rgba(129, 74, 151, 0.35);
+html {
+  scroll-behavior: smooth;
 }
 
-    .destaqueForum{
-        grid-area: destaqueForum;
-        width: 100%;
-        max-width: none;
-        margin: 0;
-        padding: 50px;
-        background-color: #f5f3ff;
-    }
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, sans-serif;
+  background: #f5f3ff;
+  color: #252744;
+}
+
+button {
+  padding: 12px 20px;
+  border: 1px solid #6d547e;
+  border-radius: 15px;
+  background: white;
+  color: #252744;
+  cursor: pointer;
+}
+
+/* ── HEADER ── */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 24px;
+  background-color: #252744;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 70px;
+}
+
+.nav a {
+  text-decoration: none;
+}
+
+.nav-logo {
+  color: white;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.nav-lista {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-lista a {
+  display: block;
+  padding: 10px 16px;
+  border-radius: 15px;
+  color: #e6e3fa;
+  font-size: medium;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-lista a:hover {
+  background: #e6e3fa;
+  color: #814a97;
+}
+
+.nav-entrar {
+  padding: 10px 22px;
+  border-radius: 15px;
+  background: #b861b0;
+  color: white;
+  font-size: medium;
+  transition: background 0.2s;
+}
+
+.nav-entrar:hover {
+  background: #814a97;
+}
+
+.nav a:focus-visible {
+  outline: 3px solid #aaa7d7;
+  outline-offset: 2px;
+}
+
+/* a barra fixa não cobre o título das seções */
+.banner,
+.destaqueForum,
+.faq,
+.Snos {
+  scroll-margin-top: 80px;
+}
+
+/* ── BANNER ── */
+.banner {
+  width: 100%;
+  min-height: 480px;
+  margin: auto;
+  padding: 35px;
+  border: 2px solid #aaa7d7;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+  align-items: center;
+  color: #814a97;
+}
+
+.banner a {
+  text-decoration: none;
+  font-size: medium;
+}
+
+.logo {
+  display: inline-flex;
+  width: 100px;
+  height: 100px;
+  border: 2px solid #252744;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  border-radius: 50px;
+  width: 100px;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+h1 {
+  font-size: clamp(30px, 4vw, 52px);
+}
+
+.botoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.principal {
+  background: #b861b0;
+  color: white;
+}
+
+/* ── CARROSSEL ── */
+.carrossel {
+  height: 290px;
+  border-radius: 25px;
+  overflow: hidden;
+  position: relative;
+  background: #55547e;
+  color: white;
+}
+
+.slide {
+  display: none;
+  height: 100%;
+  padding: 35px;
+  background-size: cover;
+  background-position: center;
+}
+
+.slide.ativo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  animation: aparecer 0.6s;
+}
+
+.slide h2 {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.slide p {
+  line-height: 1.5;
+}
+
+.seta {
+  position: absolute;
+  top: 45%;
+  border: none;
+  border-radius: 50%;
+  background: #252744cc;
+  color: white;
+  font-size: 20px;
+  padding: 10px 14px;
+}
+
+.anterior { left: 12px; }
+.proxima { right: 12px; }
+
+.pontos {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 9px;
+}
+
+.ponto {
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: #ffffff88;
+}
+
+.ponto.ativo {
+  background: white;
+}
+
+.info {
+  margin-top: 18px;
+  padding: 22px;
+  border-radius: 22px;
+  background: #e6e3fa;
+}
+
+@keyframes aparecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ── PERGUNTAS EM DESTAQUE ── */
+.destaqueForum {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 24px;
+  background-color: #f5f3ff;
+}
+
+.tituloDestaque {
+  margin: 0 0 20px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  align-items: stretch;
+}
+
+.cards > p {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 24px;
+  text-align: center;
+  border-radius: 18px;
+  background: #e6e3fa;
+}
+
+.cards .comentarioResposta {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.cards .corpo {
+  flex: 1;
+  min-width: 0;
+  align-self: stretch;
+}
+
+.cards .avatarMedico {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #814a97, #c068e2);
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cards .balao {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100%;
+  padding: 18px 20px;
+  border-top: 5px solid #c068e2;
+  border-radius: 20px;
+  background: white;
+  color: #252744;
+  box-shadow: 0 8px 24px rgba(37, 39, 68, 0.08);
+}
+
+.cards .balao p {
+  margin: 0;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.destaque-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.destaque-identificacao {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.medicoAutor {
+  display: block;
+  font-size: 15px;
+  color: #814a97;
+}
+
+.destaque-data {
+  font-size: 12px;
+  color: #55547e;
+}
+
+.destaque-pontos {
+  flex-shrink: 0;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: #f5e9fb;
+  color: #814a97;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.destaque-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.destaque-tag,
+.cards .balao small {
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.destaque-tag {
+  background: #e6e3fa;
+  color: #252744;
+}
+
+.cards .balao small {
+  background: #e6f4ea;
+  color: #2e7d32;
+}
+
+/* ── SEÇÕES DE CARDS (FAQ e Se conhecendo) ── */
+.faq,
+.Snos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 30px;
+  background-color: #f5f3ff;
+  border-top: 2px solid purple;
+}
+
+/* título sempre sozinho em cima, ocupando a largura toda */
+.faq > h2,
+.Snos > h2 {
+  grid-column: 1 / -1;
+  grid-row: auto;
+  margin: 0;
+  font-size: clamp(26px, 3vw, 36px);
+  color: #252744;
+}
+
+/* os wrappers não atrapalham: o card dentro deles ocupa tudo */
+.cardsFaq,
+.Snos .corpo {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* os cards: mesmo tamanho, texto alinhado à esquerda */
+.infooo,
+.infooS {
+  flex: 1;
+  height: 100%;
+  padding: 28px;
+  border: 1px solid #c068e2;
+  border-top: 6px solid #aaa7d7;
+  border-radius: 26px;
+  background: white;
+}
+
+.infooo .balao,
+.infooS .balao {
+  padding: 0;
+  background: none;
+}
+
+.sobre {
+  display: block;
+  margin: 0 0 12px;
+  font-size: 20px;
+  color: #252744;
+}
+
+.infooo p,
+.infooS p {
+  margin: 0;
+  text-align: left;
+  line-height: 1.6;
+  color: #55547e;
+}
+
+/* ── RODAPÉ ── */
+.footer {
+  margin-top: auto;
+  padding: 14px;
+  background-color: #252744;
+}
+
+.footer p {
+  margin: 0;
+  text-align: center;
+  color: white;
+}
+
+/* ── CELULAR ── */
+@media (max-width: 700px) {
+  .banner {
+    grid-template-columns: 1fr;
+    padding: 22px;
+    border-radius: 28px;
+  }
+
+  .carrossel { height: 300px; }
+
+  .header { padding: 0 12px; }
+  .nav { flex-wrap: wrap; justify-content: center; padding: 8px 0; gap: 8px; }
+  .nav-lista a { padding: 8px 10px; font-size: 0.9rem; }
+
+  .destaqueForum { padding: 24px; }
+
+  .faq,
+  .Snos {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; animation: none !important; }
+}
