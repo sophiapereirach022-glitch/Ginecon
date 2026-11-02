@@ -141,13 +141,13 @@ function votar(id, valor) {
     const meuVoto = postagem.votos.find(v => v.usuarioId === usuarioAtual.id);
 
     if (!meuVoto) {
-        // ainda não votou: cria o voto
+
         postagem.votos.push({ usuarioId: usuarioAtual.id, valor: valor });
     } else if (meuVoto.valor === valor) {
-        // clicou de novo no mesmo voto: remove o voto
+  
         postagem.votos = postagem.votos.filter(v => v.usuarioId !== usuarioAtual.id);
     } else {
-        // mudou de ▲ para ▼ (ou o contrário)
+       
         meuVoto.valor = valor;
     }
 
@@ -162,7 +162,7 @@ function alternarValidacao(id) {
     const postagem = postagens.find(p => p.id === id);
 
     if (postagem.validacao) {
-        postagem.validacao = null; // já estava validada: remove
+        postagem.validacao = null;
         showToast("Validação removida.", "success");
     } else {
         postagem.validacao = {
@@ -277,7 +277,7 @@ function denunciarResposta(idPostagem, idResposta) {
     resposta.denuncias.push(usuarioAtual.id);
 
     if (resposta.denuncias.length >= LIMITE_DENUNCIAS) {
-        // cria uma nova lista de respostas SEM a denunciada
+      
         postagem.respostas = postagem.respostas.filter(r => r.id !== idResposta);
         showToast("Resposta removida após atingir o limite de denúncias.", "success");
     } else {
@@ -597,9 +597,7 @@ function renderizarPostagens() {
     if (filtradas.length === 0) {
         const vazio = document.createElement("p");
         if (postagens.length === 0) {
-            vazio.textContent = ehObservador
-                ? "Nenhuma pergunta ainda."
-                : "Nenhuma pergunta ainda. Seja o primeiro a postar!";
+            vazio.textContent = ehObservador ? "Nenhuma pergunta ainda.": "Nenhuma pergunta ainda. Seja o primeiro a postar!";
         } else {
             vazio.textContent = "Nenhuma pergunta encontrada.";
         }
@@ -653,7 +651,7 @@ function corrigirDadosAntigos() {
 function montarTopicos() {
     const topicos = [{ valor: "Todos", texto: "Todos" }];
 
-    if (!ehObservador) {
+    if (!ehObservador && !ehMedico) {
         topicos.push({ valor: "minhas", texto: "Minhas perguntas" });
     }
 
@@ -690,6 +688,12 @@ campoPesquisa.addEventListener("input", renderizarPostagens);
 
 function abrirModal() {
     if (!exigirLogin()) return;
+
+    if(ehMedico){
+        showToast("Médicos não poem fazer perguntas!!", "error");
+        return;
+    }
+    
     overlayModal.classList.add("ativo");
 }
 
@@ -706,16 +710,19 @@ function limparModal() {
 botaoAbrirModal.addEventListener("click", abrirModal);
 botaoFecharModal.addEventListener("click", fecharModal);
 
-// clicar no fundo escuro (fora da caixa branca) também fecha o modal
+
 overlayModal.addEventListener("click", (event) => {
     if (event.target === overlayModal) {
         fecharModal();
     }
 });
 
-// ---------- Nova postagem ----------
-
 function registrarPostagem() {
+    if (ehMedico) {
+        showToast("Médicos não podem postar perguntas.", "error");
+        return;
+    }
+
     if (!exigirLogin()) return;
 
     const pergunta = document.querySelector("#pergunta").value.trim();
