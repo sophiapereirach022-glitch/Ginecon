@@ -2,7 +2,7 @@
 
 O Ginecon é um site que ajuda pessoas que estão iniciando o período menstrual. De forma simples e sem tabus, funciona como um fórum de perguntas e respostas sobre as mudanças e os sintomas que acontecem no corpo, trazendo dicas de higiene, orientações para lidar com cólicas e TPM e respostas às dúvidas mais comuns sobre a menstruação.
 
-Projeto desenvolvido pelo grupo **Cookies de Terceiro** (turma INF2AM) para a Hackathon.
+Projeto desenvolvido pelo grupo **Cookies de Terceiros** (turma INF2AM) para a Hackathon.
 
 ## Funcionalidades
 
